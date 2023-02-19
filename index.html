@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/img/Logo-Amazing-Events.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Amazing Events | Home</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top container-fluid" aria-label="Offcanvas navbar large">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img id="logo" src="./assets/img/Logo_Amazing_Events.png" alt="Logo"></a>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end align-items-center flex-grow-1 flex-wrap pe-3">
+                        <li class="nav-item"><a class="nav-link btn btn-active py-1 mx-2 mt-1" aria-current="page" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/upcomingEvents.html">Upcpoming Events</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/pastEvents.html">Past Events</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/details.html">Details</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/stats.html">Stats</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="carousel slide"  data-ride="carousel" data-interval="ride">
+            <div class="carousel-inner" id="carouselSize">
+                <div class="carousel-item active">
+                    <a href="#" class="d-flex justify-content-center "><img src="./assets/img/home.png" class="d-block imagen" alt="home"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="./pages/upcomingEvents.html" class="d-flex justify-content-center"><img src="./assets/img/upcomingEvents.png" class="d-block imagen" alt="upcpoming_events"></a>
+                </div>
+                <div class="carousel-item d-flex justify-content-center visually-hidden">
+                    <a href="./pages/pastEvents.html"><img src="./assets/img/pastEvents.png" class="d-block imagen" alt="past_events"></a>
+                </div>
+                <div class="carousel-item d-flex justify-content-center visually-hidden">
+                    <a href="./pages/contact.html"><img src="./assets/img/contact.png" class="d-block imagen" alt="contact"></a>
+                </div>
+                <div class="carousel-item d-flex justify-content-center visually-hidden">
+                    <a href="./pages/stats.html"><img src="./assets/img/stats.png" class="d-block imagen" alt="stats"></a>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="./pages/stats.html" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="./pages/upcomingEvents.html" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden ">Next</span>
+            </a>
+        </div>
+        <form class="d-flex justify-content-between flex-wrap">
+            <div class="d-flex flex-wrap">
+                <label class="d-inline-flex my-2 mx-5"><input class="form-check-input me-3" name="category1" type="checkbox">Category</label>
+                <label class="d-inline-flex my-2 mx-5"><input class="form-check-input me-3" name="category2" type="checkbox">Category</label>
+                <label class="d-inline-flex my-2 mx-5"><input class="form-check-input me-3" name="category3" type="checkbox">Category</label>
+                <label class="d-inline-flex my-2 mx-5"><input class="form-check-input me-3" name="category4" type="checkbox">Category</label>
+                <label class="d-inline-flex my-2 mx-5"><input class="form-check-input me-3" name="category5" type="checkbox">Category</label>
+            </div>
+            <div class="d-flex me-4">
+                <input class="form-control d-inline-flex mx-2 px-5" type="search" placeholder="Search what you looking for..." aria-label="Search">
+                <button class="btn btn-nav btn-special btn-outline-danger" type="submit">Search</button>
+            </div>
+        </form>
+        <div class="cards d-flex justify-content-around flex-wrap mt-4">
+            <div class="card mx-2 my-2">
+                <img src="./assets/img/Cinema.jpg" class="card-img-top" alt="cinema">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Cinema</h5>
+                    <p class="card-text">Descriptive text about Cinemas</p>
+                    <div class="d-flex justify-content-between">
+                        <p class="pt-2">Price $1000</p>
+                        <a href="#" class="btn btn-nav align-self-center go">Let's Go</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card mx-2 my-2">
+                <img src="./assets/img/Food_Fair.jpg" class="card-img-top" alt="food_fair">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Food Fair</h5>
+                    <p class="card-text">Descriptive text about food fairs</p>
+                    <div class="d-flex justify-content-between">
+                        <p class="pt-2">Price $1000</p>
+                        <a href="#" class="btn btn-nav align-self-center go">Let's Go</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card mx-2 my-2">
+                <img src="./assets/img/Music_Concert.jpg" class="card-img-top" alt="music_concert">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Music Concert</h5>
+                    <p class="card-text">Descriptive text about music concerts</p>
+                    <div class="d-flex justify-content-between">
+                        <p class="pt-2">Price $1000</p>
+                        <a href="#" class="btn btn-nav align-self-center go">Let's Go</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card mx-2 my-2">
+                <img src="./assets/img/Museum_Tour.jpg" class="card-img-top" alt="museum_tour">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Museum Tour</h5>
+                    <p class="card-text">Descriptive text about museum tours</p>
+                    <div class="d-flex justify-content-between">
+                        <p class="pt-2">Price $1000</p>
+                        <a href="#" class="btn btn-nav align-self-center go">Let's Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="d-flex flex-wrap justify-content-between pt-2 pe-4">
+        <div class="d-flex" id="divIconos">
+            <a href=""><img class="iconosFooter" src="./assets/img/instagram.png" alt="instagram"></a>
+            <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/instagram" title="instagram iconos">Instagram iconos creados por Grow studio - Flaticon</a>
+            <a href=""><img class="iconosFooter" src="./assets/img/facebook.png" alt="facebook"></a>
+            <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/facebook" title="facebook iconos">Facebook iconos creados por Hight Quality Icons - Flaticon</a>
+            <a href=""><img class="iconosFooter" src="./assets/img/whatsapp.png" alt="whatsapp"></a>
+            <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/whatsapp" title="whatsapp iconos">Whatsapp iconos creados por Fathema Khanom - Flaticon</a>
+        </div>
+        <div>
+            <p>Developed by Debi🌈</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/img/Logo-Amazing-Events.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <title>Amazing Events | Contact</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top container-fluid" aria-label="Offcanvas navbar large">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img id="logo" src="../assets/img/Logo_Amazing_Events.png" alt="Logo"></a>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end align-items-center flex-grow-1 flex-wrap pe-3">
+                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" aria-current="page" href="../index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./upcomingEvents.html">Upcpoming Events</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pastEvents.html">Past Events</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./details.html">Details</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-active py-1 mx-2 mt-1" href="#">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./stats.html">Stats</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="carousel slide"  data-ride="carousel" data-interval="ride">
+            <div class="carousel-inner" id="carouselSize">
+                <div class="carousel-item d-flex justify-content-center visually-hidden">
+                    <a href="../index.html"><img src="../assets/img/home.png" class="d-block imagen" alt="home"></a>
+                </div>
+                <div class="carousel-item d-flex justify-content-center visually-hidden">
+                    <a href="./upcomingEvents.html"><img src="../assets/img/upcomingEvents.png" class="d-block imagen" alt="upcpoming_events"></a>
+                </div>
+                <div class="carousel-item d-flex justify-content-center visually-hidden">
+                    <a href="../pages/pastEvents.html"><img src="./assets/img/pastEvents.png" class="d-block imagen" alt="past_events"></a>
+                </div>
+                <div class="carousel-item d-flex justify-content-center active">
+                    <a href="#"><img src="../assets/img/contact.png" class="d-block imagen" alt="contact"></a>
+                </div>
+                <div class="carousel-item d-flex justify-content-center visually-hidden">
+                    <a href="./stats.html"><img src="../assets/img/stats.png" class="d-block imagen" alt="stats"></a>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="./pastEvents.html" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="./stats.html" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden ">Next</span>
+            </a>
+        </div>
+        <div class="container mt-5" id="contactForm">
+            <form class="d-flex flex-column">
+                <label for="name">Name: </label>
+                <input type="text" id="name" placeholder="Enter your name" class="borderRadius">
+                <label for="email">Email: </label>
+                <input type="email" name="email" id="email" placeholder="Enter your email" class="borderRadius">
+                <label for="message">Message: </label>
+                <textarea name="message" id="message" cols="25" rows="5" placeholder="Write your message" class="borderRadius"></textarea>
+                <input class="btn btn-special btn-nav btn-outline-danger align-self-end mt-1 mb-3" type="submit" value="Send">
+            </form>
+        </div>
+    </main>
+    <footer class="d-flex flex-wrap justify-content-between pt-2 pe-4">
+        <div class="d-flex">
+            <a href=""><img class="iconosFooter" src="../assets/img/instagram.png" alt="instagram"></a>
+            <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/instagram" title="instagram iconos">Instagram iconos creados por Grow studio - Flaticon</a>
+            <a href=""><img class="iconosFooter" src="../assets/img/facebook.png" alt="facebook"></a>
+            <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/facebook" title="facebook iconos">Facebook iconos creados por Hight Quality Icons - Flaticon</a>
+            <a href=""><img class="iconosFooter" src="../assets/img/whatsapp.png" alt="whatsapp"></a>
+            <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/whatsapp" title="whatsapp iconos">Whatsapp iconos creados por Fathema Khanom - Flaticon</a>
+        </div>
+        <div>
+            <p>Developed by Debi🌈</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
