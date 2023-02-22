@@ -7,8 +7,15 @@
 #logo{
     height: 3rem;
 }
-nav{
-    position: sticky;
+body{
+    max-height: 100vh;
+}
+header{
+    min-height: 7vh;
+}
+main{
+    background-color:pink;
+    min-height: 87vh;
 }
 .btn-active{
     background-color: rgba(174, 26, 243, 0.788);
@@ -20,10 +27,7 @@ nav{
 .nav-link:hover{
     background-color: violet;
 }
-main{
-    background-color:pink;
-    min-height: 87vh;
-}
+
 .carousel{
     background-color: #ff57b9;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ffffff' fill-opacity='0.33' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
@@ -38,7 +42,7 @@ main{
     width: 85%;
 }
 .card{
-    width: 18rem;
+    width: 20rem;
 }
 .card-img-top{
     margin: 1rem 1rem;
@@ -70,6 +74,9 @@ main{
 .btn-special{
     color: black;
 }
+#lupita{
+    max-height: 1.5rem;
+}
 table{
     border: 1px solid rgb(0, 0, 0);
     width: 100%;
@@ -88,7 +95,7 @@ td{
 footer{
     background-color: #ff57b9;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ffffff' fill-opacity='0.33' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
-    min-height: 1.5rem;
+    min-height: 5vh;
 }
 #divIconos{
     margin-left: 1rem;
