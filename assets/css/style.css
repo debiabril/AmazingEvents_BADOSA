@@ -111,6 +111,9 @@ footer{
         margin-right: 1rem;
         width: 90%;
     }
+    #cardDetails{
+        width: 90%;
+    }
     footer{
         display: flex;
         flex-direction: column;
