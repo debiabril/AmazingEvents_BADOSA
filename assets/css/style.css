@@ -45,12 +45,15 @@ main{
     width: 20rem;
 }
 .card-img-top{
-    margin: 1rem 1rem;
-    width: auto;
-    min-height: 50% !important;
+    margin: 0.5rem 0.5rem;
+    width: 18.5rem !important;
+    height: 14rem !important;
     object-fit: cover;
     object-position: 50% 0%;
     box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.39);
+}
+.card-text{
+    min-height: 5rem;
 }
 .img-fluid{
     width: 80%;
