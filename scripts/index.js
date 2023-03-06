@@ -9,7 +9,7 @@ function allEvents(events) {
                 <h5 class="card-title">${event.name}</h5>
                 <p class="card-text">${event.description}</p>
                 <div class="d-flex justify-content-between">
-                    <p class="pt-2">${event.price}</p>
+                    <p class="pt-2">Price: $${event.price}</p>
                     <a href="./pages/details.html" class="btn btn-nav align-self-center go">Let's Go</a>
                 </div>
             </div>
@@ -17,5 +17,4 @@ function allEvents(events) {
     }
     return cardsIndex;
 }
-
 divCardsIndex.innerHTML= allEvents(data.events)
