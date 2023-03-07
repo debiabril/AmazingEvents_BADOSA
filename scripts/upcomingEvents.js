@@ -37,11 +37,12 @@ for (let event of data.events) {
         </label>`;
         fragmentForm.appendChild(div);
     }
-    prevCategory = event.category;
+prevCategory = event.category;
 }
 let categories = formCategories.appendChild(fragmentForm);
 
-/* const formCategories = document.getElementById('formCategories');
+/*  Prueba con elementById
+const formCategories = document.getElementById('formCategories');
 let fragmentForm = document.createDocumentFragment();
 let prevCategory;
 
