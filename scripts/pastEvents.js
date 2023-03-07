@@ -13,7 +13,7 @@ function pastEvents(events, date){
                 <p class="card-text">${event.description}</p>
                 <div class="d-flex justify-content-between">
                     <p class="pt-2">Price: $${event.price}</p>
-                    <a href="./pages/details.html" class="btn btn-nav align-self-center go">Let's Go</a>
+                    <a href="./details.html" class="btn btn-nav align-self-center go">Let's Go</a>
                 </div>
             </div>`;
             fragmento.appendChild(div);
