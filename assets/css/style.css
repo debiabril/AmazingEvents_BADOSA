@@ -78,6 +78,11 @@ main{
 .btn-special{
     color: black;
 }
+.btn-details{
+    background-color: rgba(251, 15, 141, 0.688);
+    border-style: solid;
+    border-color: black;
+}
 #lupita{
     max-height: 1.5rem;
 }
