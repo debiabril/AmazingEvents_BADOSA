@@ -1,7 +1,8 @@
 import data from "./amazing.js";
-import { displayEvents, createCard, renderCards, showCategories } from './functions.js';
+import { displayEvents, createCard, renderCards, showCategoriesInCheckboxes } from './functions.js';
 
 const divCardsIndex = document.getElementById('cardsIndex');
-let cards = displayEvents(data.events, divCardsIndex, createCard);
+const ruta = "./pages/";
+let cards = displayEvents(data.events, divCardsIndex, createCard, ruta);
 
-let checkboxesCategories = showCategories(data.events);
+let checkboxesCategories = showCategoriesInCheckboxes(data.events);
