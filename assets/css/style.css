@@ -65,8 +65,14 @@ main{
     width: 50%;
 }
 #cardDetails{
-    width: 60%;
+    width: 80%;
     background-color: #ff57b9;
+}
+#cardImg{
+    width: 93%;
+    height: 93%;
+    object-fit: cover;
+    box-shadow: 4px 4px 4px 3px rgba(0, 0, 0, 0.39);
 }
 .go:hover{
     background-color: violet;
