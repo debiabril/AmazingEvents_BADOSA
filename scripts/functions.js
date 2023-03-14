@@ -1,3 +1,4 @@
+
 // función que obtiene las categorías únicas de los eventos
 const uniqueCategories = (events) => {
     return events.reduce((acc, curr) => {
@@ -13,16 +14,17 @@ const createCategoryCheckboxes = (array) => {
     const categories = uniqueCategories(array);
     categories.map(category => {
         const div = document.createElement('div');
-        div.classList="d-flex flex-wrap";
+        div.classList="d-flex flex-wrap form-check form-switch";
         div.innerHTML=` 
         <label class="d-inline-flex my-2 mx-2">
         <input class="form-check-input me-3" value="${category}" 
-        name="categories" type="checkbox">${category}
+        name="categories" role="switch" for="${category}" id="${category}" type="checkbox">${category}
         </label>`;
     fragmentForm.appendChild(div);
     });
     return fragmentForm;
 }
+
 // función que muestra los checkboxes en el formulario
 const showCategoriesInCheckboxes = (array) => {
     const formCategories = document.getElementsByClassName('formCategories')[0];
@@ -57,9 +59,13 @@ function renderCards(elements, container, renderFunction, ruta="./") {
 }
 
 function displayEvents(events, container, renderFunction, ruta) {
+    if (events.length == 0) {
+        container.innerHTML= `<h2>No se encontraron Resultados</h2>`
+    }
     renderCards(events, container, renderFunction, ruta);
 }
 
+//Funcion que crea las Cards de Details según el ID
 function createDetailsCard(event, container) {
     let div = document.createElement('div');
     div.classList='row g-0';
@@ -96,4 +102,4 @@ function createDetailsCard(event, container) {
 }
 
 
-export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard};
+export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, };

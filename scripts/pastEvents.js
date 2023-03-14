@@ -7,3 +7,30 @@ const pastEvents = data.events.filter((event) => {
 let cards = displayEvents(pastEvents, divCardsPastEvents, createCard);
 
 let checkboxesCategories = showCategoriesInCheckboxes(pastEvents);
+
+const searchInput = document.querySelector('.formSearch > input');
+const searchButton = document.querySelector('.formSearch > button');
+const checkContainer = document.getElementById('formCategories');
+
+//Funcion para el Search
+function filterByName(array, name){
+    let filtersArray = array.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
+    return filtersArray;
+}
+//Filtrado por categorias
+function filterByCategories(array){
+    const checkedValues = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(input => input.value);
+    return checkedValues.length > 0 ? array.filter(e => checkedValues.includes(e.category)) : array;
+}
+
+//Función para que funcionen juntos
+function ultraFilter(){
+    divCardsPastEvents.innerHTML=``
+    let filterArrayName = filterByName(pastEvents, searchInput.value)
+    let filterAll = filterByCategories(filterArrayName);
+    displayEvents(filterAll, divCardsPastEvents, createCard);
+}
+
+searchInput.addEventListener('input', ultraFilter);
+searchButton.addEventListener('input', ultraFilter);
+checkContainer.addEventListener('change', ultraFilter);
