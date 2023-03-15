@@ -1,5 +1,5 @@
 import data from "./amazing.js";
-import { displayEvents, createCard, showCategoriesInCheckboxes } from './functions.js';
+import { displayEvents, createCard, showCategoriesInCheckboxes, filterByName, filterByCategories} from './functions.js';
 
 
 const divCardsIndex = document.getElementById('cardsIndex');
@@ -12,21 +12,7 @@ const searchInput = document.querySelector('.formSearch > input');
 const searchButton = document.querySelector('.formSearch > button');
 const checkContainer = document.getElementById('formCategories');
 
-/* console.log([searchInput]);
-console.log([searchButton]); */
-
-//Funcion para el Search
-function filterByName(array, name){
-    let filtersArray = array.filter(e => e.name.toLowerCase().includes(name.toLowerCase()));
-    return filtersArray;
-}
-//Filtrado por categorias
-function filterByCategories(array){
-    const checkedValues = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(input => input.value);
-    return checkedValues.length > 0 ? array.filter(e => checkedValues.includes(e.category)) : array;
-}
-
-//Función para que funcionen juntos
+//Función para que los filtros funcionen juntos 
 function ultraFilter(event){
     event.preventDefault();
     divCardsIndex.innerHTML=``;

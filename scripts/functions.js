@@ -101,5 +101,15 @@ function createDetailsCard(event, container) {
     return container.appendChild(div)
 }
 
+//Funcion para el Search
+function filterByName(array, name){
+    let filtersArray = array.filter(e => e.name.toLowerCase().includes(name.toLowerCase()));
+    return filtersArray;
+}
+//Filtrado por categorias
+function filterByCategories(array){
+    const checkedValues = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(input => input.value);
+    return checkedValues.length > 0 ? array.filter(e => checkedValues.includes(e.category)) : array;
+}
 
-export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, };
+export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, filterByName, filterByCategories};
