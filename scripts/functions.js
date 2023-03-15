@@ -112,4 +112,13 @@ function filterByCategories(array){
     return checkedValues.length > 0 ? array.filter(e => checkedValues.includes(e.category)) : array;
 }
 
-export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, filterByName, filterByCategories};
+//Función para que funcionen juntos
+function ultraFilter(container, array, name, ruta="./"){
+    window.event.preventDefault();
+    container.innerHTML=``;
+    let filterArrayName = filterByName(array, name);
+    let filterAll = filterByCategories(filterArrayName);
+    displayEvents(filterAll, container, createCard, ruta);
+}
+
+export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, filterByName, filterByCategories, ultraFilter};
