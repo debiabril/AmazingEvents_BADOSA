@@ -60,7 +60,7 @@ function renderCards(elements, container, renderFunction, ruta="./") {
 
 function displayEvents(events, container, renderFunction, ruta) {
     if (events.length == 0) {
-        container.innerHTML= `<h2>No se encontraron Resultados</h2>`
+        container.innerHTML= `<h2>No results founded</h2>`
     }
     renderCards(events, container, renderFunction, ruta);
 }
