@@ -60,7 +60,7 @@ function renderCards(elements, container, renderFunction, ruta="./") {
 
 function displayEvents(events, container, renderFunction, ruta) {
     if (events.length == 0) {
-        container.innerHTML= `<h2>No results founded</h2>`
+        container.innerHTML= `<h1>We didn't find results in your search. Please adjust the filters.</h1>`
     }
     renderCards(events, container, renderFunction, ruta);
 }
@@ -94,7 +94,7 @@ function createDetailsCard(event, container) {
                 <dd>${event.price}</dd>
             </dl>
             <div class="d-flex justify-content-end">
-                <a href="../index.html" class="btn btn-details align-self-center go">Back to Home</a>
+                <a href="javascript:history.back()" class="btn btn-details align-self-center go">Go Back</a>
             </div>
         </div>
     </div>`;
