@@ -1,28 +1,38 @@
-/* import data from "./amazing.js"; */
-import { displayEvents, createCard, showCategoriesInCheckboxes, ultraFilter, loadData, data} from './functions.js';
+import { displayEvents, createCard, showCategoriesInCheckboxes, ultraFilter, getData} from './functions.js';
 
-/* const {currentDate, events} = await loadData(); */
-console.log(data);
-/* console.log(events); */
-/* const divCardsIndex = document.getElementById('cardsIndex');
-const ruta = "./pages/";
-let cards = displayEvents(data.events, divCardsIndex, createCard, ruta);
-let checkboxesCategories = showCategoriesInCheckboxes(data.events);
+const startIndex = async () => {
+    const data = await getData(); // Llamar a la función y esperar su resultado
+    
+    if(!data) { // Verficar si hay algún error cargo
+        console.error("No se pudo cargar los datos");
+        return;
+    }
+    const events = data.events; // Guardar los eventos en una nueva variable
 
-const searchForm = document.querySelector('.formSearch');
-const searchInput = document.querySelector('.formSearch > input');
-const searchButton = document.querySelector('.formSearch > button');
-const checkContainer = document.getElementById('formCategories');
+    const divCardsIndex = document.getElementById('cardsIndex');
+    const ruta = "./pages/";
+    let cards = displayEvents(events, divCardsIndex, createCard, ruta);
+    let checkboxesCategories = showCategoriesInCheckboxes(events);
 
-searchInput.addEventListener('input', () => {
-    ultraFilter(divCardsIndex, data.events, searchInput.value, ruta)
-});
-searchForm.addEventListener('submit', () => {
-    ultraFilter(divCardsIndex, data.events, searchInput.value, ruta)
-});
-searchButton.addEventListener('click', () => {
-    ultraFilter(divCardsIndex, data.events, searchInput.value, ruta)
-});
-checkContainer.addEventListener('change', () => {
-    ultraFilter(divCardsIndex, data.events, searchInput.value, ruta)
-}); */
+    const searchForm = document.querySelector('.formSearch');
+    const searchInput = document.querySelector('.formSearch > input');
+    const searchButton = document.querySelector('.formSearch > button');
+    const checkContainer = document.getElementById('formCategories');
+
+    searchInput.addEventListener('input', () => {
+        ultraFilter(divCardsIndex, events, searchInput.value, ruta)
+    });
+    searchForm.addEventListener('submit', () => {
+        ultraFilter(divCardsIndex, events, searchInput.value, ruta)
+    });
+    searchButton.addEventListener('click', () => {
+        ultraFilter(divCardsIndex, events, searchInput.value, ruta)
+    });
+    checkContainer.addEventListener('change', () => {
+        ultraFilter(divCardsIndex, events, searchInput.value, ruta)
+    });
+}
+
+startIndex();
+
+

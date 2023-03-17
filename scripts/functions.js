@@ -121,18 +121,26 @@ function ultraFilter(container, array, name, ruta="./"){
     displayEvents(filterAll, container, createCard, ruta);
 }
 
-
+// En loadData() solo se realiza la solicitud fetch sin retornar los datos obtenidos. 
 async function loadData(){
-    await fetch("/json/amazing.json")
-    .then(response => response.json())
-    .then(dataJson => {
-        let dataString =JSON.stringify(dataJson)
-        let data = JSON.parse(dataString);
-        console.log(data);
-    })
-    
+    const response = await fetch("/json/amazing.json"); // Espera a que termine la solicitud y obtiene la respuesta
+    const dataJson = await response.json(); // Obtener los datos en formato JSON de la respuesta.
+    return dataJson; // Devolver los datos JSON obtenidos.
 }
 
-export var data = loadData();
+//Llamar a loadData() y asignar sus valores a una variable para luego usarlos en otras partes
+async function getData() {
+    try {
+        const dataJson = await loadData(); // Llamar a loadData()
+        // Obtener los datos específicos
+        const currentDate = dataJson.currentDate;
+        const events = dataJson.events;
+        // Retorno las variables que necesito
+        return { currentDate, events };
+    } catch (error) {
+        console.log("Error al cargar datos: ", error);
+        return null;
+    }
+}
 
-export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, ultraFilter, loadData};
+export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, ultraFilter, getData};
