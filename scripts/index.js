@@ -3,8 +3,8 @@ import { displayEvents, createCard, showCategoriesInCheckboxes, ultraFilter, get
 const startIndex = async () => {
     const data = await getData(); // Llamar a la función y esperar su resultado
     
-    if(!data) { // Verficar si hay algún error cargo
-        console.error("No se pudo cargar los datos");
+    if(!data) { // Verficar si hay algún error cargando
+        alert("Couldn't load data");
         return;
     }
     const events = data.events; // Guardar los eventos en una nueva variable

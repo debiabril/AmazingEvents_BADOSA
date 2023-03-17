@@ -138,7 +138,7 @@ async function getData() {
         // Retorno las variables que necesito
         return { currentDate, events };
     } catch (error) {
-        console.log("Error loading data: ", error);
+        alert("Error loading data: ", error);
         return null;
     }
 }
