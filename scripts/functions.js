@@ -128,17 +128,17 @@ async function loadData(){
     return dataJson; // Devolver los datos JSON obtenidos.
 }
 
-//Llamar a loadData() y asignar sus valores a una variable para luego usarlos en otras partes
+//get Data llama a loadData() y asigna sus valores a una variable para luego poder usarlos
 async function getData() {
     try {
         const dataJson = await loadData(); // Llamar a loadData()
-        // Obtener los datos específicos
+        // Obtener los datos
         const currentDate = dataJson.currentDate;
         const events = dataJson.events;
         // Retorno las variables que necesito
         return { currentDate, events };
     } catch (error) {
-        console.log("Error al cargar datos: ", error);
+        console.log("Error loading data: ", error);
         return null;
     }
 }
