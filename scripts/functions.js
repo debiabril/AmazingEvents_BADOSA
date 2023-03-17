@@ -112,7 +112,7 @@ function filterByCategories(array){
     return checkedValues.length > 0 ? array.filter(e => checkedValues.includes(e.category)) : array;
 }
 
-//Función para que funcionen juntos
+//Función para que funcionen juntos los filtros de Search y Categorias
 function ultraFilter(container, array, name, ruta="./"){
     window.event.preventDefault();
     container.innerHTML=``;
@@ -121,4 +121,18 @@ function ultraFilter(container, array, name, ruta="./"){
     displayEvents(filterAll, container, createCard, ruta);
 }
 
-export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, filterByName, filterByCategories, ultraFilter};
+
+async function loadData(){
+    await fetch("/json/amazing.json")
+    .then(response => response.json())
+    .then(dataJson => {
+        let dataString =JSON.stringify(dataJson)
+        let data = JSON.parse(dataString);
+        console.log(data);
+    })
+    
+}
+
+export var data = loadData();
+
+export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, ultraFilter, loadData};

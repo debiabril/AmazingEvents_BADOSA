@@ -1,8 +1,10 @@
-import data from "./amazing.js";
-import { displayEvents, createCard, showCategoriesInCheckboxes, ultraFilter} from './functions.js';
+/* import data from "./amazing.js"; */
+import { displayEvents, createCard, showCategoriesInCheckboxes, ultraFilter, loadData, data} from './functions.js';
 
-
-const divCardsIndex = document.getElementById('cardsIndex');
+/* const {currentDate, events} = await loadData(); */
+console.log(data);
+/* console.log(events); */
+/* const divCardsIndex = document.getElementById('cardsIndex');
 const ruta = "./pages/";
 let cards = displayEvents(data.events, divCardsIndex, createCard, ruta);
 let checkboxesCategories = showCategoriesInCheckboxes(data.events);
@@ -23,4 +25,4 @@ searchButton.addEventListener('click', () => {
 });
 checkContainer.addEventListener('change', () => {
     ultraFilter(divCardsIndex, data.events, searchInput.value, ruta)
-});
+}); */
