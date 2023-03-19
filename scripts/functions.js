@@ -121,10 +121,10 @@ function ultraFilter(container, array, name, ruta="./"){
 }
 
 //Función que obtiene el nombre del evento con mayor porcentage de asistencia
-function getEventWithMostAssistance(events){
+function getEventWithMostAssistance(array){
     let eventWithHighestAttendance = "";
     let highestAttendancePercentage = -1;
-    events.forEach((event) => {
+    array.forEach((event) => {
         const percentage = (event.assistance / event.capacity) * 100;
         if (percentage > highestAttendancePercentage) {
         highestAttendancePercentage = percentage;
@@ -133,11 +133,97 @@ function getEventWithMostAssistance(events){
     });
     return eventWithHighestAttendance 
 }
+//Función que obtiene el nombre del evento con menor asistencia
+function getEventWithLowestAssistance(array) {
+    let eventsWithLowestAttendance = [];
+    let lowestAttendancePercentage = 101;
+    array.forEach((event) => {
+        const percentage = (event.assistance / event.capacity) * 100;
+        if (percentage < lowestAttendancePercentage) {
+            lowestAttendancePercentage = percentage;
+            eventsWithLowestAttendance = [event.name];
+        } else if (percentage === lowestAttendancePercentage) {
+            eventsWithLowestAttendance.push(event.name);
+        }
+    eventsWithLowestAttendance= String(eventsWithLowestAttendance);
+    });
+    return eventsWithLowestAttendance;
+}
+//Funcion que retorna el nombre del evento con mayor capacidad
+function getEventWithLargerCapacity(array) {
+    let eventWithLargestCapacity = array.reduce((prevEvent, actualEvent) => {
+        return (prevEvent.capacity > actualEvent.capacity) ? prevEvent : actualEvent;
+    });
+    eventWithLargestCapacity = eventWithLargestCapacity.name
+    return eventWithLargestCapacity;
+}
 //Función que inserta la data que deseemos con innerText en donde le indiquemos
 function insertData(event,container){
     container.innerText = event;
 }
 
+//Función que agrupa por categorías según un array y calcula las ganancias totales y el porcentaje de asistencia 
+//y las va mostrando en diferentes columnas de diferentes filas
+function groupByCategory(array, container) {
+    const groupedCategories = {};
+    array.forEach((event) => {
+        if (!groupedCategories[event.category]) {
+        groupedCategories[event.category] = [];
+        }
+        groupedCategories[event.category].push(event);
+    });
+
+    for (const category in groupedCategories) {
+    let revenues = 0;
+    let totalAttendees = 0;
+    const events = groupedCategories[category];
+
+    for (const event of events) {
+        revenues += event.price * (event.estimate|| event.assistance);
+        totalAttendees += (event.estimate|| event.assistance);
+    }
+    const attendancePercentage = (totalAttendees / (events.length * events[0].capacity)) * 100;
+
+    const tr = document.createElement("tr");
+    tr.innerHTML = 
+                `<td>${category}</td>
+                <td class="text-end">$${revenues}</td>
+                <td class="text-end">${attendancePercentage.toFixed(1)}%</td>`;
+    container.appendChild(tr);
+    }
+}
+/* function groupByCategory(array) {
+    const groupedCategories = {};
+    array.forEach((event) =>{
+        if(!groupedCategories[event.category]){
+            groupedCategories[event.category] = [];
+        }
+        groupedCategories[event.category].push(event);
+    });
+    console.log(groupedCategories);
+    
+    let revenues=0;
+    let estimateAttend = 0;
+    let percentage = 0;
+    for (const category in groupedCategories) {
+        console.log(category);
+        for(const event of category){
+            console.log();
+        }
+        
+        
+        console.log(revenues+= event.price);
+        console.log(estimateAttend += event.estimate);
+    }
+    
+             percentage = estimateAttend/ groupedCategories[category].length *100
+} */
+
+
+/* function insertRowsAndColumsStats(events){
+    
+}
+ */
 // En loadData() solo se realiza la solicitud fetch 
 async function loadData(){
     const response = await fetch("/json/amazing.json"); // Espera a que termine la solicitud y obtiene la respuesta
@@ -160,4 +246,4 @@ async function getData() {
     }
 }
 
-export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, ultraFilter, getData, getEventWithMostAssistance,insertData};
+export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, ultraFilter, getData, getEventWithMostAssistance,insertData, getEventWithLowestAssistance, getEventWithLargerCapacity,groupByCategory, };
