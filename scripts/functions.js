@@ -48,7 +48,6 @@ function createCard(event, ruta) {
         </div>`;
     return div;
 }
-
 function renderCards(elements, container, renderFunction, ruta="./") {
     let fragmento = document.createDocumentFragment();
     elements.forEach(element => {
@@ -57,7 +56,7 @@ function renderCards(elements, container, renderFunction, ruta="./") {
     });
     container.appendChild(fragmento);
 }
-
+//Funcion para mostrar las cards
 function displayEvents(events, container, renderFunction, ruta) {
     if (events.length == 0) {
         container.innerHTML= `<h1>We didn't find results in your search. Please adjust the filters.</h1>`
@@ -121,7 +120,25 @@ function ultraFilter(container, array, name, ruta="./"){
     displayEvents(filterAll, container, createCard, ruta);
 }
 
-// En loadData() solo se realiza la solicitud fetch sin retornar los datos obtenidos. 
+//Función que obtiene el nombre del evento con mayor porcentage de asistencia
+function getEventWithMostAssistance(events){
+    let eventWithHighestAttendance = "";
+    let highestAttendancePercentage = -1;
+    events.forEach((event) => {
+        const percentage = (event.assistance / event.capacity) * 100;
+        if (percentage > highestAttendancePercentage) {
+        highestAttendancePercentage = percentage;
+        eventWithHighestAttendance = event.name;
+        }
+    });
+    return eventWithHighestAttendance 
+}
+//Función que inserta la data que deseemos con innerText en donde le indiquemos
+function insertData(event,container){
+    container.innerText = event;
+}
+
+// En loadData() solo se realiza la solicitud fetch 
 async function loadData(){
     const response = await fetch("/json/amazing.json"); // Espera a que termine la solicitud y obtiene la respuesta
     const dataJson = await response.json(); // Obtener los datos en formato JSON de la respuesta.
@@ -143,4 +160,4 @@ async function getData() {
     }
 }
 
-export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, ultraFilter, getData};
+export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, ultraFilter, getData, getEventWithMostAssistance,insertData};
