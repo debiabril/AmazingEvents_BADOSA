@@ -164,7 +164,7 @@ function insertData(event,container){
 
 //Función que agrupa por categorías según un array y calcula las ganancias totales y el porcentaje de asistencia 
 //y las va mostrando en diferentes columnas de diferentes filas
-function groupByCategory(array, container) {
+/* function groupByCategory(array, container) {
     const groupedCategories = {};
     array.forEach((event) => {
         if (!groupedCategories[event.category]) {
@@ -192,38 +192,53 @@ function groupByCategory(array, container) {
     container.appendChild(tr);
     }
 }
-/* function groupByCategory(array) {
+ */
+
+//Funcion para calcular las ganancias totales
+function calculateRevenues(events){
+    let revenues = 0;
+    events.forEach(event => {
+        const revenue = event.price * (event.estimate || event.assistance);
+        revenues += revenue;
+    });
+    return revenues;
+}
+//Funcion para calcular el porcentaje de asistencia, se puede  usar con estimate o con assistance
+function calculateAttendancePercentage(events){
+    const totalAssistance = events.reduce((total, event) => {
+        return total + (event.estimate || event.assistance);
+    }, 0);
+    const capacity = events[0].capacity;
+    return (totalAssistance / (events.length * capacity)) * 100;
+}
+//función para crear las filas con las columnas 
+function createTableRow(category, revenues, attendancePercentage, container){
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${category}</td>
+                    <td class="text-end">$${revenues}</td>
+                    <td class="text-end">${attendancePercentage.toFixed(1)}%</td>`;
+    container.appendChild(tr);
+}
+
+//Función que agrupa por categorías según array y crea las filas necesarias para ser mostradas
+function groupByCategory(array, container) {
     const groupedCategories = {};
-    array.forEach((event) =>{
-        if(!groupedCategories[event.category]){
-            groupedCategories[event.category] = [];
+    array.forEach((event) => {
+        if (!groupedCategories[event.category]) {
+        groupedCategories[event.category] = [];
         }
         groupedCategories[event.category].push(event);
     });
-    console.log(groupedCategories);
-    
-    let revenues=0;
-    let estimateAttend = 0;
-    let percentage = 0;
+
     for (const category in groupedCategories) {
-        console.log(category);
-        for(const event of category){
-            console.log();
-        }
-        
-        
-        console.log(revenues+= event.price);
-        console.log(estimateAttend += event.estimate);
+
+        const events = groupedCategories[category];
+        const revenues = calculateRevenues(events);
+        const attendancePct = calculateAttendancePercentage(events);
+        createTableRow(category, revenues, attendancePct, container);
     }
-    
-             percentage = estimateAttend/ groupedCategories[category].length *100
-} */
-
-
-/* function insertRowsAndColumsStats(events){
-    
 }
- */
+
 // En loadData() solo se realiza la solicitud fetch 
 async function loadData(){
     const response = await fetch("/json/amazing.json"); // Espera a que termine la solicitud y obtiene la respuesta
