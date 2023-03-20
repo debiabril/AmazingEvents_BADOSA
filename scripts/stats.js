@@ -13,7 +13,7 @@ const startStats = async () => {
     const upcomingEvents = events.filter((event) => {
         return event.date > currentDate;});
     const pastEvents = data.events.filter((event) => {
-        return event.date < data.currentDate;});
+        return event.date < currentDate;});
 
     const highestPercentageTD = document.getElementById("eventHighestPercentage");
     const lowestPercentageTD = document.getElementById("eventLowestPercentage");

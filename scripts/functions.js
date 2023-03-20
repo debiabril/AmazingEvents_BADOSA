@@ -125,7 +125,7 @@ function getEventWithMostAssistance(array){
     let eventWithHighestAttendance = "";
     let highestAttendancePercentage = -1;
     array.forEach((event) => {
-        const percentage = (event.assistance / event.capacity) * 100;
+        const percentage = ((event.assistance ? event.assistance : event.estimate) / event.capacity) * 100;
         if (percentage > highestAttendancePercentage) {
         highestAttendancePercentage = percentage;
         eventWithHighestAttendance = event.name;
@@ -138,13 +138,11 @@ function getEventWithLowestAssistance(array) {
     let eventsWithLowestAttendance = [];
     let lowestAttendancePercentage = 101;
     array.forEach((event) => {
-        const percentage = (event.assistance / event.capacity) * 100;
+        const percentage = ((event.assistance ? event.assistance : event.estimate)/ event.capacity) * 100;
         if (percentage < lowestAttendancePercentage) {
             lowestAttendancePercentage = percentage;
             eventsWithLowestAttendance = [event.name];
-        } else if (percentage === lowestAttendancePercentage) {
-            eventsWithLowestAttendance.push(event.name);
-        }
+        } 
     eventsWithLowestAttendance= String(eventsWithLowestAttendance);
     });
     return eventsWithLowestAttendance;
@@ -198,7 +196,7 @@ function insertData(event,container){
 function calculateRevenues(events){
     let revenues = 0;
     events.forEach(event => {
-        const revenue = event.price * (event.estimate || event.assistance);
+        const revenue = event.price * ((event.assistance ? event.assistance : event.estimate));
         revenues += revenue;
     });
     return revenues;
@@ -206,17 +204,20 @@ function calculateRevenues(events){
 //Funcion para calcular el porcentaje de asistencia, se puede  usar con estimate o con assistance
 function calculateAttendancePercentage(events){
     const totalAssistance = events.reduce((total, event) => {
-        return total + (event.estimate || event.assistance);
+        return total + ((event.assistance ? event.assistance : event.estimate));
     }, 0);
-    const capacity = events[0].capacity;
-    return (totalAssistance / (events.length * capacity)) * 100;
+    //const capacity = events[0].capacity;
+    const capacity = events.reduce((cap, event) => {
+        return cap + (event.capacity);
+    }, 0);
+    return ((totalAssistance / capacity) * 100).toFixed(2);
 }
 //función para crear las filas con las columnas 
 function createTableRow(category, revenues, attendancePercentage, container){
     const tr = document.createElement("tr");
     tr.innerHTML = `<td>${category}</td>
                     <td class="text-end">$${revenues}</td>
-                    <td class="text-end">${attendancePercentage.toFixed(1)}%</td>`;
+                    <td class="text-end">${attendancePercentage}%</td>`;
     container.appendChild(tr);
 }
 
