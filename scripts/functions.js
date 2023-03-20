@@ -160,38 +160,6 @@ function insertData(event,container){
     container.innerText = event;
 }
 
-//Función que agrupa por categorías según un array y calcula las ganancias totales y el porcentaje de asistencia 
-//y las va mostrando en diferentes columnas de diferentes filas
-/* function groupByCategory(array, container) {
-    const groupedCategories = {};
-    array.forEach((event) => {
-        if (!groupedCategories[event.category]) {
-        groupedCategories[event.category] = [];
-        }
-        groupedCategories[event.category].push(event);
-    });
-
-    for (const category in groupedCategories) {
-    let revenues = 0;
-    let totalAttendees = 0;
-    const events = groupedCategories[category];
-
-    for (const event of events) {
-        revenues += event.price * (event.estimate|| event.assistance);
-        totalAttendees += (event.estimate|| event.assistance);
-    }
-    const attendancePercentage = (totalAttendees / (events.length * events[0].capacity)) * 100;
-
-    const tr = document.createElement("tr");
-    tr.innerHTML = 
-                `<td>${category}</td>
-                <td class="text-end">$${revenues}</td>
-                <td class="text-end">${attendancePercentage.toFixed(1)}%</td>`;
-    container.appendChild(tr);
-    }
-}
- */
-
 //Funcion para calcular las ganancias totales
 function calculateRevenues(events){
     let revenues = 0;
