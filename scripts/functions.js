@@ -156,8 +156,12 @@ function getEventWithLargerCapacity(array) {
     return eventWithLargestCapacity;
 }
 //Función que inserta la data que deseemos con innerText en donde le indiquemos
-function insertData(event,container){
-    container.innerText = event;
+function insertData(array,container){
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td class="text-center">${getEventWithMostAssistance(array)}</td>
+                    <td class="text-center">${getEventWithLowestAssistance(array)}</td>
+                    <td class="text-center">${getEventWithLargerCapacity(array)}%</td>`;
+    container.appendChild(tr);
 }
 
 //Funcion para calcular las ganancias totales
@@ -230,4 +234,4 @@ async function getData() {
     }
 }
 
-export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, ultraFilter, getData, getEventWithMostAssistance,insertData, getEventWithLowestAssistance, getEventWithLargerCapacity,groupByCategory, };
+export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, ultraFilter, getData,insertData,groupByCategory, };
