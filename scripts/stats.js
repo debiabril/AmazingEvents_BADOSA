@@ -1,4 +1,4 @@
-import { getData, groupByCategory, insertData, upcomingEvents, pastEvents} from "./functions.js";
+import { getData, groupByCategory, insertData,} from "./functions.js";
 
 const startStats = async () => {
     const data = await getData(); // Llamar a la función y esperar su resultado
