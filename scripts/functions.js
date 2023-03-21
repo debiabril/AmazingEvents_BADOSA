@@ -26,8 +26,8 @@ const createCategoryCheckboxes = (array) => {
 }
 
 // función que muestra los checkboxes en el formulario
-const showCategoriesInCheckboxes = (array) => {
-    const formCategories = document.getElementsByClassName('formCategories')[0];
+const showCategoriesInCheckboxes = (array, container) => {
+    const formCategories = container;
     const fragmentForm = createCategoryCheckboxes(array);
     let showCategories = formCategories.appendChild(fragmentForm);
 }

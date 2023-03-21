@@ -11,16 +11,14 @@ const startUpcoming = async () => {
     const events = data.events; // Guardar los eventos en una nueva variable
 
     const divCardsUpcomingEvents = document.getElementById('cardsUpcomingEvents');
-    const upcomingEvents = events.filter((event) => {
-        return event.date > currentDate;});
-    let cards = displayEvents(upcomingEvents, divCardsUpcomingEvents, createCard);
-
-    let checkboxesCategories = showCategoriesInCheckboxes(upcomingEvents);
-
-    const searchForm = document.querySelector('.formSearch');
+        const searchForm = document.querySelector('.formSearch');
     const searchInput = document.querySelector('.formSearch > input');
     const searchButton = document.querySelector('.formSearch > button');
     const checkContainer = document.getElementById('formCategories');
+    const upcomingEvents = events.filter((event) => {
+        return event.date > currentDate;});
+    let cards = displayEvents(upcomingEvents, divCardsUpcomingEvents, createCard);
+    let checkboxesCategories = showCategoriesInCheckboxes(upcomingEvents, checkContainer);
 
     searchInput.addEventListener('input', ()=>{
         ultraFilter(divCardsUpcomingEvents, upcomingEvents, searchInput.value)
