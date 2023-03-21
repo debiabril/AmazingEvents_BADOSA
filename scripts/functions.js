@@ -151,8 +151,7 @@ function getEventWithLowestAssistance(array) {
 function getEventWithLargerCapacity(array) {
     let eventWithLargestCapacity = array.reduce((prevEvent, actualEvent) => {
         return (prevEvent.capacity > actualEvent.capacity) ? prevEvent : actualEvent;
-    });
-    eventWithLargestCapacity = eventWithLargestCapacity.name
+    }).name;
     return eventWithLargestCapacity;
 }
 //Función que inserta la data que deseemos con innerText en donde le indiquemos
