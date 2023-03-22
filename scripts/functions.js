@@ -10,10 +10,10 @@ const uniqueCategories = (events) => {
 };
   // función que crea el fragmento con los checkboxes para cada categoría
 const createCategoryCheckboxes = (array) => {
-    const fragmentForm = document.createDocumentFragment();
-    const categories = uniqueCategories(array);
+    let fragmentForm = document.createDocumentFragment();
+    let categories = uniqueCategories(array);
     categories.map(category => {
-        const div = document.createElement('div');
+        let div = document.createElement('div');
         div.classList="d-flex flex-wrap form-check form-switch";
         div.innerHTML=` 
         <label class="d-inline-flex my-2 mx-2">
@@ -27,8 +27,8 @@ const createCategoryCheckboxes = (array) => {
 
 // función que muestra los checkboxes en el formulario
 const showCategoriesInCheckboxes = (array, container) => {
-    const formCategories = container;
-    const fragmentForm = createCategoryCheckboxes(array);
+    let formCategories = container;
+    let fragmentForm = createCategoryCheckboxes(array);
     let showCategories = formCategories.appendChild(fragmentForm);
 }
 
@@ -51,7 +51,7 @@ function createCard(event, ruta) {
 function renderCards(elements, container, renderFunction, ruta="./") {
     let fragmento = document.createDocumentFragment();
     elements.forEach(element => {
-        const card = renderFunction(element,ruta);
+        let card = renderFunction(element,ruta);
         fragmento.appendChild(card);
     });
     container.appendChild(fragmento);
@@ -107,7 +107,7 @@ function filterByName(array, name){
 }
 //Filtrado por categorias
 function filterByCategories(array){
-    const checkedValues = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(input => input.value);
+    let checkedValues = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(input => input.value);
     return checkedValues.length > 0 ? array.filter(e => checkedValues.includes(e.category)) : array;
 }
 
@@ -174,11 +174,11 @@ function calculateRevenues(events){
 }
 //Funcion para calcular el porcentaje de asistencia, se puede  usar con estimate o con assistance
 function calculateAttendancePercentage(events){
-    const totalAssistance = events.reduce((total, event) => {
+    let totalAssistance = events.reduce((total, event) => {
         return total + ((event.assistance ? event.assistance : event.estimate));
     }, 0);
     //const capacity = events[0].capacity;
-    const capacity = events.reduce((cap, event) => {
+    let capacity = events.reduce((cap, event) => {
         return cap + (event.capacity);
     }, 0);
     return ((totalAssistance / capacity) * 100).toFixed(2);
@@ -204,9 +204,9 @@ function groupByCategory(array, container) {
 
     for (const category in groupedCategories) {
 
-        const events = groupedCategories[category];
-        const revenues = calculateRevenues(events);
-        const attendancePct = calculateAttendancePercentage(events);
+        let events = groupedCategories[category];
+        let revenues = calculateRevenues(events);
+        let attendancePct = calculateAttendancePercentage(events);
         createTableRow(category, revenues, attendancePct, container);
     }
 }

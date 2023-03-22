@@ -9,12 +9,12 @@ const startIndex = async () => {
     }
     const events = data.events; // Guardar los eventos en una nueva variable
 
-    const divCardsIndex = document.getElementById('cardsIndex');
-    const searchForm = document.querySelector('.formSearch');
-    const searchInput = document.querySelector('.formSearch > input');
-    const searchButton = document.querySelector('.formSearch > button');
-    const checkContainer = document.getElementById('formCategories');
-    const ruta = "./pages/";
+    let divCardsIndex = document.getElementById('cardsIndex');
+    let searchForm = document.querySelector('.formSearch');
+    let searchInput = document.querySelector('.formSearch > input');
+    let searchButton = document.querySelector('.formSearch > button');
+    let checkContainer = document.getElementById('formCategories');
+    let ruta = "./pages/";
     let cards = displayEvents(events, divCardsIndex, createCard, ruta);
     let checkboxesCategories = showCategoriesInCheckboxes(events, checkContainer);
 

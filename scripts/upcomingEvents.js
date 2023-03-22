@@ -10,12 +10,12 @@ const startUpcoming = async () => {
     const currentDate = data.currentDate; // Guardar la fecha en una nueva variable
     const events = data.events; // Guardar los eventos en una nueva variable
 
-    const divCardsUpcomingEvents = document.getElementById('cardsUpcomingEvents');
-        const searchForm = document.querySelector('.formSearch');
-    const searchInput = document.querySelector('.formSearch > input');
-    const searchButton = document.querySelector('.formSearch > button');
-    const checkContainer = document.getElementById('formCategories');
-    const upcomingEvents = events.filter((event) => {
+    let divCardsUpcomingEvents = document.getElementById('cardsUpcomingEvents');
+    let searchForm = document.querySelector('.formSearch');
+    let searchInput = document.querySelector('.formSearch > input');
+    let searchButton = document.querySelector('.formSearch > button');
+    let checkContainer = document.getElementById('formCategories');
+    let upcomingEvents = events.filter((event) => {
         return event.date > currentDate;});
     let cards = displayEvents(upcomingEvents, divCardsUpcomingEvents, createCard);
     let checkboxesCategories = showCategoriesInCheckboxes(upcomingEvents, checkContainer);
