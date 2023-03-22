@@ -159,7 +159,7 @@ function insertData(array,container){
     const tr = document.createElement("tr");
     tr.innerHTML = `<td class="text-center">${getEventWithMostAssistance(array)}</td>
                     <td class="text-center">${getEventWithLowestAssistance(array)}</td>
-                    <td class="text-center">${getEventWithLargerCapacity(array)}%</td>`;
+                    <td class="text-center">${getEventWithLargerCapacity(array)}</td>`;
     container.appendChild(tr);
 }
 
