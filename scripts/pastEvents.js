@@ -8,16 +8,12 @@ async function startPast(){
     await fetch("/json/amazing.json")
         .then(response => response.json())
         .then(data => {
-            if(!data) { // Verficar si hay algún error cargando
-            alert("Couldn't load data");
-            return;
-            }
             const currentDate = data.currentDate; // Guardar la fecha en una nueva variable
             const events = data.events; // Guardar los eventos en una nueva variable
             let pastEvents = events.filter((event) => {
                 return event.date < currentDate;});
-            let cards = displayEvents(pastEvents, divCardsPastEvents, createCard);
-            let checkboxesCategories = showCategoriesInCheckboxes(pastEvents, checkContainer);
+            displayEvents(pastEvents, divCardsPastEvents, createCard);
+            showCategoriesInCheckboxes(pastEvents, checkContainer);
             searchInput.addEventListener('input', ()=>{
                 ultraFilter(divCardsPastEvents, pastEvents, searchInput.value)
             });
@@ -30,6 +26,6 @@ async function startPast(){
             checkContainer.addEventListener('change', ()=>{
                 ultraFilter(divCardsPastEvents, pastEvents, searchInput.value)
             });
-        }).catch(error => alert("Error loading data: ", error));
+        }).catch(error => alert("Couldn't load data. Error: ", error));
 }
 startPast();

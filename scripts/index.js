@@ -10,13 +10,9 @@ async function startIndex(){
     await fetch("/json/amazing.json")
         .then(response => response.json())
         .then(data => {
-            if(!data) { // Verficar si hay algún error cargando
-            alert("Couldn't load data");
-            return;
-            }
             const events = data.events; // Guardar los eventos en una nueva variable
-            let cards = displayEvents(events, divCardsIndex, createCard, ruta);
-            let checkboxesCategories = showCategoriesInCheckboxes(events, checkContainer);
+            displayEvents(events, divCardsIndex, createCard, ruta);
+            showCategoriesInCheckboxes(events, checkContainer);
             searchInput.addEventListener('input', () => {
                 ultraFilter(divCardsIndex, events, searchInput.value, ruta)
             });
@@ -29,7 +25,7 @@ async function startIndex(){
             checkContainer.addEventListener('change', () => {
                 ultraFilter(divCardsIndex, events, searchInput.value, ruta)
             });
-        }).catch(error => alert("Error loading data: ", error));
+        }).catch(error => alert("Couldn't load data. Error: ", error));
 }
 startIndex();
 

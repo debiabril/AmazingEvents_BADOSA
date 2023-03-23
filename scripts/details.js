@@ -4,10 +4,6 @@ async function startDetails(){
     await fetch("/json/amazing.json")
         .then(response => response.json())
         .then(data => {
-            if(!data) { // Verficar si hay algún error cargando
-            alert("Couldn't load data");
-            return;
-            }
             const events = data.events; // Guardar los eventos en una nueva variable
             const queryString = location.search;
             const param = new URLSearchParams(queryString);
@@ -17,6 +13,6 @@ async function startDetails(){
                 detailsContainer.innerHTML= `<h1 class="d-flex justify-content-center">We didn't find results.</h1>`
             }
             createDetailsCard(event,detailsContainer);
-        }).catch(error => alert("Error loading data: ", error));
+        }).catch(error => alert("Couldn't load data. Error: ", error));
 }
 startDetails();

@@ -8,10 +8,6 @@ async function startStats(){
     await fetch("/json/amazing.json")
         .then(response => response.json())
         .then(data => {
-            if(!data) { // Verficar si hay algún error cargando
-            alert("Couldn't load data");
-            return;
-            }
             const currentDate = data.currentDate; // Guardar la fecha en una nueva variable
             const events = data.events; // Guardar los eventos en una nueva variable
             let upcomingEvents = events.filter((event) => {
@@ -22,6 +18,6 @@ async function startStats(){
             insertData(events,firstTable); 
             groupByCategory(upcomingEvents, upcomingEventsTBody)
             groupByCategory(pastEvents, pastEventsTBody)
-        }).catch(error => alert("Error loading data: ", error));
+        }).catch(error => alert("Couldn't load data. Error: ", error));
 }
 startStats()

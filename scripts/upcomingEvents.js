@@ -8,16 +8,12 @@ async function startUpcoming(){
     await fetch("/json/amazing.json")
         .then(response => response.json())
         .then(data => {
-            if(!data) { // Verficar si hay algún error cargando
-            alert("Couldn't load data");
-            return;
-            }
             const currentDate = data.currentDate; // Guardar la fecha en una nueva variable
             const events = data.events; // Guardar los eventos en una nueva variable
             let upcomingEvents = events.filter((event) => {
                 return event.date > currentDate;});
-            let cards = displayEvents(upcomingEvents, divCardsUpcomingEvents, createCard);
-            let checkboxesCategories = showCategoriesInCheckboxes(upcomingEvents, checkContainer);
+            displayEvents(upcomingEvents, divCardsUpcomingEvents, createCard);
+            showCategoriesInCheckboxes(upcomingEvents, checkContainer);
             searchInput.addEventListener('input', ()=>{
                 ultraFilter(divCardsUpcomingEvents, upcomingEvents, searchInput.value)
             });
@@ -30,7 +26,7 @@ async function startUpcoming(){
             checkContainer.addEventListener('change', ()=>{
                 ultraFilter(divCardsUpcomingEvents, upcomingEvents, searchInput.value)
             });
-        }).catch(error => alert("Error loading data: ", error));
+        }).catch(error => alert("Couldn't load data. Error: ", error));
 }
 startUpcoming()
 
