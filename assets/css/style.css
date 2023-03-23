@@ -109,13 +109,16 @@ table{
 th{
     background-color: rgba(238, 130, 238, 0.459);
     border: 1px solid rgb(0, 0, 0);
+    padding: 0.5rem;
 }
 tr{
     height: 1rem;
+    padding: 0.5rem;
 }
 td{
     border: 1px solid rgb(0, 0, 0);
     width: 33%;
+    padding: 0.3rem;
 }
 footer{
     background-color: #ff57b9;
