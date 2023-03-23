@@ -135,15 +135,14 @@ function getEventWithMostAssistance(array){
 }
 //Función que obtiene el nombre del evento con menor asistencia
 function getEventWithLowestAssistance(array) {
-    let eventsWithLowestAttendance = [];
+    let eventsWithLowestAttendance = "";
     let lowestAttendancePercentage = 101;
     array.forEach((event) => {
         const percentage = ((event.assistance ? event.assistance : event.estimate)/ event.capacity) * 100;
         if (percentage < lowestAttendancePercentage) {
             lowestAttendancePercentage = percentage;
-            eventsWithLowestAttendance = [event.name];
+            eventsWithLowestAttendance = event.name;
         } 
-    eventsWithLowestAttendance= String(eventsWithLowestAttendance);
     });
     return eventsWithLowestAttendance;
 }
@@ -154,7 +153,7 @@ function getEventWithLargerCapacity(array) {
     }).name;
     return eventWithLargestCapacity;
 }
-//Función que inserta la data que deseemos con innerText en donde le indiquemos
+//Función que inserta la data que deseemos con innerHTML en la tabla que le indiquemos
 function insertData(array,container){
     const tr = document.createElement("tr");
     tr.innerHTML = `<td class="text-center">${getEventWithMostAssistance(array)}</td>
@@ -163,7 +162,7 @@ function insertData(array,container){
     container.appendChild(tr);
 }
 
-//Funcion para calcular las ganancias totales
+//Funcion para calcular las ganancias totales utilizando assistance o estimate según corresponda
 function calculateRevenues(events){
     let revenues = 0;
     events.forEach(event => {
@@ -177,13 +176,13 @@ function calculateAttendancePercentage(events){
     let totalAssistance = events.reduce((total, event) => {
         return total + ((event.assistance ? event.assistance : event.estimate));
     }, 0);
-    //const capacity = events[0].capacity;
     let capacity = events.reduce((cap, event) => {
         return cap + (event.capacity);
     }, 0);
     return ((totalAssistance / capacity) * 100).toFixed(2);
 }
-//función para crear las filas con las columnas 
+//función para crear las filas con las columnas correspondientes en la tabla que le indiquemos y nos muestre
+//las ganancias y el porcentaje de asistencia por categoría. 
 function createTableRow(category, revenues, attendancePercentage, container){
     const tr = document.createElement("tr");
     tr.innerHTML = `<td>${category}</td>
@@ -192,7 +191,8 @@ function createTableRow(category, revenues, attendancePercentage, container){
     container.appendChild(tr);
 }
 
-//Función que agrupa por categorías según array y crea las filas necesarias para ser mostradas
+//Función que agrupa por categorías según el array que se le pase y es recorrido creando las filas las filas de la tabla 
+//según se va recorriendo y mostrando las ganancias y el porcentaje de asistencia por categoria.
 function groupByCategory(array, container) {
     const groupedCategories = {};
     array.forEach((event) => {
@@ -203,7 +203,6 @@ function groupByCategory(array, container) {
     });
 
     for (const category in groupedCategories) {
-
         let events = groupedCategories[category];
         let revenues = calculateRevenues(events);
         let attendancePct = calculateAttendancePercentage(events);
@@ -211,26 +210,4 @@ function groupByCategory(array, container) {
     }
 }
 
-// En loadData() solo se realiza la solicitud fetch 
-async function loadData(){
-    const response = await fetch("/json/amazing.json"); // Espera a que termine la solicitud y obtiene la respuesta
-    const dataJson = await response.json(); // Obtener los datos en formato JSON de la respuesta.
-    return dataJson; // Devolver los datos JSON obtenidos.
-}
-
-//get Data llama a loadData() y asigna sus valores a una variable para luego poder usarlos
-async function getData() {
-    try {
-        const dataJson = await loadData(); // Llamar a loadData()
-        // Obtener los datos
-        const currentDate = dataJson.currentDate;
-        const events = dataJson.events;
-        // Retorno las variables que necesito
-        return { currentDate, events };
-    } catch (error) {
-        alert("Error loading data: ", error);
-        return null;
-    }
-}
-
-export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, ultraFilter, getData,insertData,groupByCategory, };
+export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, ultraFilter,insertData,groupByCategory, };
