@@ -2,7 +2,7 @@ import {groupByCategory, insertData,} from "./functions.js";
 //Coloco en variables los containers que voy a necesitar
 let firstTable = document.getElementById("firstTable");
 let upcomingEventsTBody= document.getElementById("upcomingEventsStatsByCategories")
-let pastEventsTBody= document.getElementById("pastEventsStatsByCategories")
+let pastEventsTBody= document.getElementById("pastEventsStatsByCategories") 
 //Traigo la data y ejecuto las funciones
 async function startStats(){
     await fetch("/json/amazing.json")
