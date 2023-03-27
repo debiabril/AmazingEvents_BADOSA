@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Amazing Events | Home</title>
 </head>
-<body>
+<body >
+    <div id="appIndex">
     <header>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark container-fluid">
             <div class="container-fluid">
@@ -22,6 +23,8 @@
                         <li class="nav-item"><a class="nav-link btn btn-active py-1 mx-2 mt-1" aria-current="page" href="#">Home</a></li>
                         <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/upcomingEvents.html">Upcoming Events</a></li>
                         <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/pastEvents.html">Past Events</a></li>
+                        <!-- <li class="nav-item"><button @click="upcomingEvents" class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/upcomingEvents.html">Upcoming Events</button></li>
+                        <li class="nav-item"><button @click="pastEvents" class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/pastEvents.html">Past Events</button></li> -->
                         <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/contact.html">Contact</a></li>
                         <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/stats.html">Stats</a></li>
                     </ul>
@@ -59,14 +62,70 @@
         </div>
         <form  class="d-flex justify-content-between flex-wrap pt-2">
             <div id="formCategories" class="d-flex flex-wrap formCategories">
+                <div v-for="category of categories" class="d-flex flex-wrap form-check form-switch">
+                    <label class="d-inline-flex my-2 mx-2">
+                        <input v-model="categoriesSelected" class="form-check-input me-3" :value="category" role="switch" :for="category" :id="category" type="checkbox">{{category}}
+                    </label>
+                </div>
             </div>
             <div class="d-flex me-4 formSearch">
-                <input class="form-control d-inline-flex mx-2 px-5" type="text" placeholder="Find what you are looking for..." aria-label="Search">
+                <input v-model="inputText" class="form-control d-inline-flex mx-2 px-5" type="text" placeholder="Find what you are looking for..." aria-label="Search">
                 <button class="btn btn-nav btn-special go" type="submit" ><img id="lupita" src="./assets/img/lupa.png" alt="lupita"></button>
                 <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/buscar" title="buscar iconos">Buscar iconos creados por Freepik - Flaticon</a>
             </div>
+            {{ultraFilter}}
+            <!-- <h1 v-if="ultraFilter" >We didn't find results in your search. Please adjust the filters.</h1> -->
         </form>
-        <div id="cardsIndex" class="cards d-flex justify-content-around flex-wrap mt-4">
+        <h1 v-if="!allCards.lenght ==0 || !cards.lenght == 0" class="text-center">Couldn't load data</h1>
+        <div id="cardsIndex" class="cards d-flex justify-content-around flex-wrap mt-4">            
+            <div v-for="card of allCards" class="card mx-2 my-2">
+                <img :src="card.image" class="card-img-top" :alt="card.category">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{card.name}}</h5>
+                    <p class="card-text">{{card.description}}</p>
+                    <div class="d-flex justify-content-between">
+                        <p class="pt-2">Price: ${{card.price}}</p>
+                        <a href="./pages/details.html?id=${card._id}" class="btn btn-nav align-self-center go">Go to Details</a>
+                        <!-- <button @click="goToDetails(card._id)" class="btn btn-nav align-self-center go">Go to Details</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-if="goToDetails()">
+            <div class="container d-flex justify-content-center">
+                <div class="card my-3" id="cardDetails">
+                    <div v-for="c of cardDetails" class="row g-0">
+                        <div class="col-md-6 d-flex justify-content-center align-items-center">
+                            <img :src="c.image" id="cardImg" class="img-fluid borderRadius " :alt="c.name">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <dl class="card-text">
+                                    <dt>Name</dt>
+                                    <dd>{{c.name}}</dd>
+                                    <dt>Date</dt>
+                                    <dd>{{c.date}}</dd>
+                                    <dt>Description</dt>
+                                    <dd>{{c.description}}</dd>
+                                    <dt>Category</dt>
+                                    <dd>{{c.category}}</dd>
+                                    <dt>Place</dt>
+                                    <dd>{{c.place}}</dd>
+                                    <dt>Capacity</dt>
+                                    <dd>{{c.capacity}}</dd>
+                                    <dt>{{c.assistance ? "Asistence" : "Estimate"}}</dt>
+                                    <dd>{{c.assistance || c.estimate}}</dd>
+                                    <dt>Price</dt>
+                                    <dd>{{c.price}}</dd>
+                                </dl>
+                                <div class="d-flex justify-content-end">
+                                    <a href="javascript:history.back()" class="btn btn-details align-self-center go">Go Back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <footer class="d-flex flex-wrap justify-content-between pt-2 pe-4">
@@ -82,8 +141,9 @@
             <p>Developed by Debi🌈FE11-TM</p>
         </div>
     </footer>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-    <script type="module" src="./scripts/index.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./scripts/index.js"></script>
 </body>
 </html>

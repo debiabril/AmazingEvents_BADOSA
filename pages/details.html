@@ -10,6 +10,7 @@
     <title>Amazing Events | Details</title>
 </head>
 <body>
+    <div id="appDetails">
     <header>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark container-fluid">
             <div class="container-fluid">
@@ -32,6 +33,36 @@
     <main class="d-flex align-items-center">
         <div class="container d-flex justify-content-center">
             <div class="card my-3" id="cardDetails">
+                <div v-for="c of cardDetails" class="row g-0">
+                    <div class="col-md-6 d-flex justify-content-center align-items-center">
+                        <img :src="c.image" id="cardImg" class="img-fluid borderRadius " :alt="c.name">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <dl class="card-text">
+                                <dt>Name</dt>
+                                <dd>{{c.name}}</dd>
+                                <dt>Date</dt>
+                                <dd>{{c.date}}</dd>
+                                <dt>Description</dt>
+                                <dd>{{c.description}}</dd>
+                                <dt>Category</dt>
+                                <dd>{{c.category}}</dd>
+                                <dt>Place</dt>
+                                <dd>{{c.place}}</dd>
+                                <dt>Capacity</dt>
+                                <dd>{{c.capacity}}</dd>
+                                <dt>{{c.assistance ? "Asistence" : "Estimate"}}</dt>
+                                <dd>{{c.assistance || c.estimate}}</dd>
+                                <dt>Price</dt>
+                                <dd>{{c.price}}</dd>
+                            </dl>
+                            <div class="d-flex justify-content-end">
+                                <a href="javascript:history.back()" class="btn btn-details align-self-center go">Go Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -48,8 +79,9 @@
             <p>Developed by Debi🌈FE11-TM</p>
         </div>
     </footer>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-    <script type="module" src="../scripts/details.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../scripts/details.js"></script>
 </body>
 </html>

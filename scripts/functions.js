@@ -210,4 +210,4 @@ function groupByCategory(array, container) {
     }
 }
 
-export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, ultraFilter,insertData,groupByCategory, };
+export { createCard, renderCards, displayEvents, showCategoriesInCheckboxes, createDetailsCard, ultraFilter, insertData, groupByCategory};
