@@ -33,32 +33,33 @@
     <main class="d-flex align-items-center">
         <div class="container d-flex justify-content-center">
             <div class="card my-3" id="cardDetails">
-                <div v-for="c of cardDetails" class="row g-0">
+                <div  class="row g-0">
                     <div class="col-md-6 d-flex justify-content-center align-items-center">
-                        <img :src="c.image" id="cardImg" class="img-fluid borderRadius " :alt="c.name">
+                        <img :src="cardDetails.image" id="cardImg" class="img-fluid borderRadius " :alt="cardDetails.name">
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
                             <dl class="card-text">
                                 <dt>Name</dt>
-                                <dd>{{c.name}}</dd>
+                                <dd>{{cardDetails.name}}</dd>
                                 <dt>Date</dt>
-                                <dd>{{c.date}}</dd>
+                                <dd>{{cardDetails.date}}</dd>
                                 <dt>Description</dt>
-                                <dd>{{c.description}}</dd>
+                                <dd>{{cardDetails.description}}</dd>
                                 <dt>Category</dt>
-                                <dd>{{c.category}}</dd>
+                                <dd>{{cardDetails.category}}</dd>
                                 <dt>Place</dt>
-                                <dd>{{c.place}}</dd>
+                                <dd>{{cardDetails.place}}</dd>
                                 <dt>Capacity</dt>
-                                <dd>{{c.capacity}}</dd>
-                                <dt>{{c.assistance ? "Asistence" : "Estimate"}}</dt>
-                                <dd>{{c.assistance || c.estimate}}</dd>
+                                <dd>{{cardDetails.capacity}}</dd>
+                                <dt>{{cardDetails.assistance ? "Asistence" : "Estimate"}}</dt>
+                                <dd>{{cardDetails.assistance || cardDetails.estimate}}</dd>
                                 <dt>Price</dt>
-                                <dd>{{c.price}}</dd>
+                                <dd>{{cardDetails.price}}</dd>
                             </dl>
                             <div class="d-flex justify-content-end">
                                 <a href="javascript:history.back()" class="btn btn-details align-self-center go">Go Back</a>
+                                <!-- <button @click="goHome()" class="btn btn-details align-self-center go">Go Back </button> -->
                             </div>
                         </div>
                     </div>

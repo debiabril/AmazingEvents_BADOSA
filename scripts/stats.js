@@ -5,7 +5,7 @@ let upcomingEventsTBody= document.getElementById("upcomingEventsStatsByCategorie
 let pastEventsTBody= document.getElementById("pastEventsStatsByCategories") 
 //Traigo la data y ejecuto las funciones
 async function startStats(){
-    await fetch("/json/amazing.json")
+    await fetch("../json/amazing.json")
         .then(response => response.json())
         .then(data => {
             // Guardar la fecha en una nueva variable
