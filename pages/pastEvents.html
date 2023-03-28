@@ -10,80 +10,138 @@
     <title>Amazing Events | Past Events</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark container-fluid">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img id="logo" src="../assets/img/Logo_Amazing_Events.png" alt="Logo"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#opciones">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="opciones">
-                    <ul class="navbar-nav justify-content-end align-items-center flex-grow-1 flex-wrap pe-3">
-                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="../index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./upcomingEvents.html">Upcoming Events</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-active py-1 mx-2 mt-1" aria-current="page" href="#">Past Events</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./contact.html">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./stats.html">Stats</a></li>
-                    </ul>
+    <div id="appPast">
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark container-fluid">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#"><img id="logo" src="../assets/img/Logo_Amazing_Events.png" alt="Logo"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#opciones">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="opciones">
+                        <ul class="navbar-nav justify-content-end align-items-center flex-grow-1 flex-wrap pe-3">
+                            <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="../index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./upcomingEvents.html">Upcoming Events</a></li>
+                            <li class="nav-item"><a class="nav-link btn btn-active py-1 mx-2 mt-1" aria-current="page" href="#">Past Events</a></li>
+                            <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./contact.html">Contact</a></li>
+                            <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./stats.html">Stats</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="carousel slide"  data-ride="carousel" data-interval="ride">
+                <div class="carousel-inner" id="carouselSize">
+                    <div class="carousel-item d-flex justify-content-center visually-hidden">
+                        <a href="../index.html"><img src="../assets/img/home.png" class="d-block imagen" alt="home"></a>
+                    </div>
+                    <div class="carousel-item d-flex justify-content-center visually-hidden">
+                        <a href="./upcomingEvents.html"><img src="../assets/img/upcomingEvents.png" class="d-block imagen" alt="upcpoming_events"></a>
+                    </div>
+                    <div class="carousel-item d-flex justify-content-center active">
+                        <a href="#"><img src="../assets/img/pastEvents.png" class="d-block imagen" alt="past_events"></a>
+                    </div>
+                    <div class="carousel-item d-flex justify-content-center visually-hidden">
+                        <a href="./contact.html"><img src="../assets/img/contact.png" class="d-block imagen" alt="contact"></a>
+                    </div>
+                    <div class="carousel-item d-flex justify-content-center visually-hidden">
+                        <a href="./stats.html"><img src="../assets/img/stats.png" class="d-block imagen" alt="stats"></a>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="./upcomingEvents.html" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="./contact.html" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden ">Next</span>
+                </a>
+            </div>
+            <div v-show="cardsBoolean">
+                <form  class="d-flex justify-content-between flex-wrap pt-2">
+                    <div id="formCategories" class="d-flex flex-wrap formCategories">
+                        <div v-for="category of categories" class="d-flex flex-wrap form-check form-switch">
+                            <label class="d-inline-flex my-2 mx-2">
+                                <input v-model="categoriesSelected" class="form-check-input me-3" :value="category" role="switch" :for="category" :id="category" type="checkbox">{{category}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="d-flex me-4 formSearch">
+                        <input v-model="inputText" class="form-control d-inline-flex mx-2 px-5" type="text" placeholder="Find what you are looking for..." aria-label="Search">
+                        <button class="btn btn-nav btn-special go" type="submit" ><img id="lupita" src="../assets/img/lupa.png" alt="lupita"></button>
+                        <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/buscar" title="buscar iconos">Buscar iconos creados por Freepik - Flaticon</a>
+                    </div>
+                    {{ultraFilter}}
+                    <!-- <h1 v-if="ultraFilter" >We didn't find results in your search. Please adjust the filters.</h1> -->
+                </form>
+            </div>
+            <div id="cardsIndex" class="cards d-flex justify-content-around flex-wrap mt-4">            
+                <div v-show="cardsBoolean" v-for="card of pastCards" class="card mx-2 my-2">
+                    <img :src="card.image" class="card-img-top" :alt="card.category">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{card.name}}</h5>
+                        <p class="card-text">{{card.description}}</p>
+                        <div class="d-flex justify-content-between">
+                            <p class="pt-2">Price: ${{card.price}}</p>
+                            <!-- <a href="./pages/details.html?id=${card._id}" class="btn btn-nav align-self-center go">Go to Details</a> -->
+                            <button @click="goToDetails(card._id)" class="btn btn-nav align-self-center go">Go to Details</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
-    <main>
-        <div class="carousel slide"  data-ride="carousel" data-interval="ride">
-            <div class="carousel-inner" id="carouselSize">
-                <div class="carousel-item d-flex justify-content-center visually-hidden">
-                    <a href="../index.html"><img src="../assets/img/home.png" class="d-block imagen" alt="home"></a>
-                </div>
-                <div class="carousel-item d-flex justify-content-center visually-hidden">
-                    <a href="./upcomingEvents.html"><img src="../assets/img/upcomingEvents.png" class="d-block imagen" alt="upcpoming_events"></a>
-                </div>
-                <div class="carousel-item d-flex justify-content-center active">
-                    <a href="#"><img src="../assets/img/pastEvents.png" class="d-block imagen" alt="past_events"></a>
-                </div>
-                <div class="carousel-item d-flex justify-content-center visually-hidden">
-                    <a href="./contact.html"><img src="../assets/img/contact.png" class="d-block imagen" alt="contact"></a>
-                </div>
-                <div class="carousel-item d-flex justify-content-center visually-hidden">
-                    <a href="./stats.html"><img src="../assets/img/stats.png" class="d-block imagen" alt="stats"></a>
+            <div v-show="cardDetailsBoolean">
+                <div class="container d-flex justify-content-center">
+                    <div class="card my-3" id="cardDetails">
+                        <div  class="row g-0">
+                            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                                <img :src="cardDetails.image" id="cardImg" class="img-fluid borderRadius " :alt="cardDetails.name">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <dl class="card-text">
+                                        <dt>Name</dt>
+                                        <dd>{{cardDetails.name}}</dd>
+                                        <dt>Date</dt>
+                                        <dd>{{cardDetails.date}}</dd>
+                                        <dt>Description</dt>
+                                        <dd>{{cardDetails.description}}</dd>
+                                        <dt>Category</dt>
+                                        <dd>{{cardDetails.category}}</dd>
+                                        <dt>Place</dt>
+                                        <dd>{{cardDetails.place}}</dd>
+                                        <dt>Capacity</dt>
+                                        <dd>{{cardDetails.capacity}}</dd>
+                                        <dt>{{cardDetails.assistance ? "Asistence" : "Estimate"}}</dt>
+                                        <dd>{{cardDetails.assistance || cardDetails.estimate}}</dd>
+                                        <dt>Price</dt>
+                                        <dd>{{cardDetails.price}}</dd>
+                                    </dl>
+                                    <div class="d-flex justify-content-end">
+                                        <!-- <a href="javascript:history.back()" class="btn btn-details align-self-center go">Go Back</a> -->
+                                        <button @click="goHome()" class="btn btn-details align-self-center go">Go Back </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="./upcomingEvents.html" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="./contact.html" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden ">Next</span>
-            </a>
-        </div>
-        <form class="d-flex justify-content-between flex-wrap pt-2">
-            <div id="formCategories" class="d-flex flex-wrap formCategories">
+        </main>
+        <footer class="d-flex flex-wrap justify-content-between pt-2 pe-4">
+            <div class="d-flex">
+                <a href=""><img class="iconosFooter" src="../assets/img/instagram.png" alt="instagram"></a>
+                <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/instagram" title="instagram iconos">Instagram iconos creados por Grow studio - Flaticon</a>
+                <a href=""><img class="iconosFooter" src="../assets/img/facebook.png" alt="facebook"></a>
+                <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/facebook" title="facebook iconos">Facebook iconos creados por Hight Quality Icons - Flaticon</a>
+                <a href=""><img class="iconosFooter" src="../assets/img/whatsapp.png" alt="whatsapp"></a>
+                <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/whatsapp" title="whatsapp iconos">Whatsapp iconos creados por Fathema Khanom - Flaticon</a>
             </div>
-            <div class="d-flex me-4 formSearch">
-                <input class="form-control d-inline-flex mx-2 px-5" type="search" placeholder="Search what you looking for..." aria-label="Search">
-                <button class="btn btn-nav btn-special go" type="submit"><img id="lupita" src="../assets/img/lupa.png" alt="lupita"></button>
-                <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/buscar" title="buscar iconos">Buscar iconos creados por Freepik - Flaticon</a>
+            <div>
+                <p>Developed by Debi🌈FE11-TM</p>
             </div>
-        </form>
-        <div  class="cards d-flex justify-content-around flex-wrap mt-4">
-            <div id="cardsPastEvents" class="cards d-flex justify-content-around flex-wrap mt-4">
-            </div>
-        </div>
-    </main>
-    <footer class="d-flex flex-wrap justify-content-between pt-2 pe-4">
-        <div class="d-flex">
-            <a href=""><img class="iconosFooter" src="../assets/img/instagram.png" alt="instagram"></a>
-            <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/instagram" title="instagram iconos">Instagram iconos creados por Grow studio - Flaticon</a>
-            <a href=""><img class="iconosFooter" src="../assets/img/facebook.png" alt="facebook"></a>
-            <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/facebook" title="facebook iconos">Facebook iconos creados por Hight Quality Icons - Flaticon</a>
-            <a href=""><img class="iconosFooter" src="../assets/img/whatsapp.png" alt="whatsapp"></a>
-            <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/whatsapp" title="whatsapp iconos">Whatsapp iconos creados por Fathema Khanom - Flaticon</a>
-        </div>
-        <div>
-            <p>Developed by Debi🌈FE11-TM</p>
-        </div>
-    </footer>
+        </footer>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="../scripts/pastEvents.js"></script>

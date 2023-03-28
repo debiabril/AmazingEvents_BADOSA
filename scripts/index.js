@@ -5,8 +5,9 @@ const app = createApp({
         return {
             cards:[],
             allCards:[],
-            cardDetails:[],
-            currentDate:'',
+            cardDetails:{},
+            cardDetailsBoolean: false,
+            cardsBoolean: true,
             pastCards:[],
             upcomingCards:[],
             categories: [],
@@ -16,6 +17,7 @@ const app = createApp({
     },
     created(){
         this.getData()
+        this.pastCards
     },
     mounted(){
 
@@ -27,9 +29,10 @@ const app = createApp({
                 .then(data => {
                     this.cards = data.events
                     this.allCards = this.cards
-                    this.currentDate = data.currentDate
                     this.getCategories(data.events)
-
+                    this.pastCards = data.events.filter((e)=>e.date < data.currentDate)
+                    console.log(this.pastCards);
+                    
                 })
                 .catch(error => alert("Couldn't load data. Error: ", error))
         },
@@ -41,15 +44,15 @@ const app = createApp({
             })
         },
         goToDetails(id){
-            this.cardDetails = this.cards.find(card => card._id == id)
-        },/*
-        pastEvents(allCards){
-            this.pastCards = allCards.filter((e) => {e.currentDate < currentDate});
+            this.cardDetails = this.cards.find(card => card._id == id),
+            this.cardsBoolean = false,
+            this.cardDetailsBoolean = true            
         },
-        upcomingEvents(allCards){
-            this.upcomingCards = allCards.filter((e) => {e.currentDate > currentDate});
-        }, 
-        */
+        goHome(){
+            this.cardDetailsBoolean = false,
+            this.cardsBoolean = true
+        },
+        
     },
     computed:{
         ultraFilter(){
