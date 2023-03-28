@@ -10,111 +10,128 @@
     <title>Amazing Events  | Stats</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark container-fluid">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img id="logo" src="../assets/img/Logo_Amazing_Events.png" alt="Logo"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#opciones">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="opciones">
-                    <ul class="navbar-nav justify-content-end align-items-center flex-grow-1 flex-wrap pe-3">
-                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="../index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./upcomingEvents.html">Upcoming Events</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pastEvents.html">Past Events</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./contact.html">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-active py-1 mx-2 mt-1" aria-current="page" href="#">Stats</a></li>
-                    </ul>
+    <div id="appStats">
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark container-fluid">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#"><img id="logo" src="../assets/img/Logo_Amazing_Events.png" alt="Logo"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#opciones">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="opciones">
+                        <ul class="navbar-nav justify-content-end align-items-center flex-grow-1 flex-wrap pe-3">
+                            <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="../index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./upcomingEvents.html">Upcoming Events</a></li>
+                            <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pastEvents.html">Past Events</a></li>
+                            <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./contact.html">Contact</a></li>
+                            <li class="nav-item"><a class="nav-link btn btn-active py-1 mx-2 mt-1" aria-current="page" href="#">Stats</a></li>
+                        </ul>
+                    </div>
                 </div>
+            </nav>
+        </header>
+        <main>
+            <div class="carousel slide"  data-ride="carousel" data-interval="ride">
+                <div class="carousel-inner" id="carouselSize">
+                    <div class="carousel-item d-flex justify-content-center visually-hidden">
+                        <a href="../index.html"><img src="../assets/img/home.png" class="d-block imagen" alt="home"></a>
+                    </div>
+                    <div class="carousel-item d-flex justify-content-center visually-hidden">
+                        <a href="./upcomingEvents.html"><img src="../assets/img/upcomingEvents.png" class="d-block imagen" alt="upcpoming_events"></a>
+                    </div>
+                    <div class="carousel-item d-flex justify-content-center visually-hidden">
+                        <a href="./contact.html"><img src="../assets/img/contact.png" class="d-block imagen" alt="contact"></a>
+                    </div>
+                    <div class="carousel-item d-flex justify-content-center active">
+                        <a href="#"><img src="../assets/img/stats.png" class="d-block imagen" alt="stats"></a>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="./contact.html" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="../index.html" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden ">Next</span>
+                </a>
             </div>
-        </nav>
-    </header>
-    <main>
-        <div class="carousel slide"  data-ride="carousel" data-interval="ride">
-            <div class="carousel-inner" id="carouselSize">
-                <div class="carousel-item d-flex justify-content-center visually-hidden">
-                    <a href="../index.html"><img src="../assets/img/home.png" class="d-block imagen" alt="home"></a>
-                </div>
-                <div class="carousel-item d-flex justify-content-center visually-hidden">
-                    <a href="./upcomingEvents.html"><img src="../assets/img/upcomingEvents.png" class="d-block imagen" alt="upcpoming_events"></a>
-                </div>
-                <div class="carousel-item d-flex justify-content-center visually-hidden">
-                    <a href="./contact.html"><img src="../assets/img/contact.png" class="d-block imagen" alt="contact"></a>
-                </div>
-                <div class="carousel-item d-flex justify-content-center active">
-                    <a href="#"><img src="../assets/img/stats.png" class="d-block imagen" alt="stats"></a>
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="./contact.html" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="../index.html" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden ">Next</span>
-            </a>
-        </div>
-        <section class="container mt-4 pb-3">
-            <h2>Stats</h2>
-            <table>
+            <section class="container mt-4 pb-3">
+                <h2>Stats</h2>
+                <table>
+                        <thead>  
+                            <tr>
+                                <th colspan="3">Events statistics</th>
+                            </tr>
+                        </thead>
+                        <tbody id="firstTable">
+                            <tr>
+                                <td class="bold">Events with highest percentage of attendance</td>
+                                <td class="bold">Events with lowes percentage of attendance</td>
+                                <td class="bold">Event with larger capacity</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">{{highestAttendance}}</td>
+                                <td class="text-center">{{lowestAttendance}}</td>
+                                <td class="text-center">{{largeCapacity}}</td>
+                            </tr>
+                        </tbody>
+                </table>
+                <table>
                     <thead>  
                         <tr>
-                            <th colspan="3">Events statistics</th>
+                            <th colspan="3">Upcoming Events statistics by category</th>
                         </tr>
                     </thead>
-                    <tbody id="firstTable">
+                    <tbody id="upcomingEventsStatsByCategories">
                         <tr>
-                            <td class="bold">Events with highest percentage of attendance</td>
-                            <td class="bold">Events with lowes percentage of attendance</td>
-                            <td class="bold">Event with larger capacity</td>
+                            <td class="bold">Categories</td>
+                            <td class="bold">Revenues</td>
+                            <td class="bold">Percentage of attendance</td>
+                        </tr>
+                        <!-- <tr v-for="category of categories">
+                            <td>{{category}}</td>
+                            <td class="text-end">${{revenues}}</td>
+                            <td class="text-end">{{attendancePercentage}}%</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+                <table>
+                    <thead> 
+                        <tr>
+                            <th colspan="3">Past Events statistics by category</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pastEventsStatsByCategories">
+                        <tr>
+                            <td class="bold">Categories</td>
+                            <td class="bold">Revenues</td>
+                            <td class="bold">Percentage of attendance</td>
+                        </tr>
+                        <tr v-for="category in categories">
+                            <td>{{category}}</td>
+                            <td class="text-end">${{revenues}}</td>
+                            <td class="text-end">{{attendancePercentage}}%</td>
                         </tr>
                     </tbody>
-            </table>
-            <table>
-                <thead>  
-                    <tr>
-                        <th colspan="3">Upcoming Events statistics by category</th>
-                    </tr>
-                </thead>
-                <tbody id="upcomingEventsStatsByCategories">
-                    <tr>
-                        <td class="bold">Categories</td>
-                        <td class="bold">Revenues</td>
-                        <td class="bold">Percentage of attendance</td>
-                    </tr>
-                </tbody>
-            </table>
-            <table>
-                <thead>  </thead>
-                    <tr>
-                        <th colspan="3">Past Events statistics by category</th>
-                    </tr>
-                </thead>
-                <tbody id="pastEventsStatsByCategories">
-                    <tr>
-                        <td class="bold">Categories</td>
-                        <td class="bold">Revenues</td>
-                        <td class="bold">Percentage of attendance</td>
-                    </tr>
-                    
-                </tbody>
-            </table>
-        </section>
-    </main>
-    <footer class="d-flex flex-wrap justify-content-between pt-2 pe-4">
-        <div class="d-flex">
-            <a href=""><img class="iconosFooter" src="../assets/img/instagram.png" alt="instagram"></a>
-            <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/instagram" title="instagram iconos">Instagram iconos creados por Grow studio - Flaticon</a>
-            <a href=""><img class="iconosFooter" src="../assets/img/facebook.png" alt="facebook"></a>
-            <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/facebook" title="facebook iconos">Facebook iconos creados por Hight Quality Icons - Flaticon</a>
-            <a href=""><img class="iconosFooter" src="../assets/img/whatsapp.png" alt="whatsapp"></a>
-            <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/whatsapp" title="whatsapp iconos">Whatsapp iconos creados por Fathema Khanom - Flaticon</a>
-        </div>
-        <div>
-            <p>Developed by Debi🌈FE11-TM</p>
-        </div>
-    </footer>
+                </table>
+            </section>
+        </main>
+        <footer class="d-flex flex-wrap justify-content-between pt-2 pe-4">
+            <div class="d-flex">
+                <a href=""><img class="iconosFooter" src="../assets/img/instagram.png" alt="instagram"></a>
+                <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/instagram" title="instagram iconos">Instagram iconos creados por Grow studio - Flaticon</a>
+                <a href=""><img class="iconosFooter" src="../assets/img/facebook.png" alt="facebook"></a>
+                <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/facebook" title="facebook iconos">Facebook iconos creados por Hight Quality Icons - Flaticon</a>
+                <a href=""><img class="iconosFooter" src="../assets/img/whatsapp.png" alt="whatsapp"></a>
+                <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/whatsapp" title="whatsapp iconos">Whatsapp iconos creados por Fathema Khanom - Flaticon</a>
+            </div>
+            <div>
+                <p>Developed by Debi🌈FE11-TM</p>
+            </div>
+        </footer>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script type="module" src="../scripts/stats.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../scripts/stats.js"></script>
 </body>
 </html>

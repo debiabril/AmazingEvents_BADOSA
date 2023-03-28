@@ -17,7 +17,6 @@ const app = createApp({
     },
     created(){
         this.getData()
-        this.pastCards
     },
     mounted(){
 
