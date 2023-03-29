@@ -88,11 +88,12 @@
                             <td class="bold">Revenues</td>
                             <td class="bold">Percentage of attendance</td>
                         </tr>
-                        <!-- <tr v-for="category of categories">
+                        {{getCategories(upcomingEvents)}}
+                        <tr v-for="category of categories">
                             <td>{{category}}</td>
-                            <td class="text-end">${{revenues}}</td>
-                            <td class="text-end">{{attendancePercentage}}%</td>
-                        </tr> -->
+                            <td class="text-end">{{calculateRevenues(category, upcomingEvents)}}${{revenues}}</td>
+                            <td class="text-end">{{calculateAttendancePercentage(category, upcomingEvents)}}{{attendancePercentage}}%</td>
+                        </tr>
                     </tbody>
                 </table>
                 <table>
@@ -107,10 +108,11 @@
                             <td class="bold">Revenues</td>
                             <td class="bold">Percentage of attendance</td>
                         </tr>
+                        {{getCategories(pastEvents)}}
                         <tr v-for="category in categories">
                             <td>{{category}}</td>
-                            <td class="text-end">${{revenues}}</td>
-                            <td class="text-end">{{attendancePercentage}}%</td>
+                            <td class="text-end">{{calculateRevenues(category, pastEvents)}}${{revenues}}</td>
+                            <td class="text-end">{{calculateAttendancePercentage(category, pastEvents)}}{{attendancePercentage}}%</td>
                         </tr>
                     </tbody>
                 </table>

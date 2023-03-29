@@ -8,113 +8,81 @@ const app = createApp({
         largeCapacity: '',
         pastEvents:[],
         upcomingEvents:[],
-        categories:{},
-        categories2:[],
+        events:[],
+        categories:[],
         revenues:0,
         attendancePercentage:0,
         }
     }
     ,created(){
-        fetch('../json/amazing.json')
-        .then(response => response.json())
-        .then(data => {
-            this.events = data.events
-            this.theHighestAttendance(this.events)
-            this.theLowestAttendance(this.events)
-            this.theLargeCapacity(this.events)
-            this.pastEvents= this.events.filter((e)=>e.date < data.currentDate)
-            console.log(this.pastEvents);
-            this.categories = this.getCategories(this.pastEvents);
-            console.log(this.categories);
-            this.categories2 = this.getCategories2(this.pastEvents);
-            console.log(this.categories2);
-            this.upcomingEvents = data.events.filter((e)=>e.date > data.currentDate);
-            
-        }
-        )
-        .catch(error => console.log(error));
+        this.getData()
     },
     mounted(){
 
     },
     methods: {
-        theHighestAttendance(array){
-            this.highestAttendance = array.reduce((prev, current) => (((prev.assistance?prev.assistance : prev.estimate)/prev.capacity*100 > (current.assistance?current.assistance : current.estimate)/current.capacity*100) ? prev : current).name);
+        getData(){
+        fetch('../json/amazing.json')
+        .then(response => response.json())
+        .then(data => {
+            this.events = data.events
+            this.eventWithHighestAttendance(this.events)
+            this.eventWithLowestAttendance(this.events)
+            this.eventWithLargestCapacity(this.events)
+            this.upcomingEvents = this.events.filter((e)=>e.date > data.currentDate);
+            this.pastEvents= this.events.filter((e)=>e.date < data.currentDate)
+        })        
+        .catch(error => console.log(error));
         },
-        theLowestAttendance(array){
+        eventWithHighestAttendance(array){
+            let eventWithHighestAttendance = "";
+            let highestAttendancePercentage = -1;
+            array.forEach((event) => {
+                const percentage = ((event.assistance ? event.assistance : event.estimate) / event.capacity) * 100;
+                if (percentage > highestAttendancePercentage) {
+                highestAttendancePercentage = percentage;
+                eventWithHighestAttendance = event.name;
+                }
+            });
+            this.highestAttendance = eventWithHighestAttendance;
+        },
+        eventWithLowestAttendance(array){
             this.lowestAttendance = array.reduce((prev, current) => ((prev.assistance?prev.assistance : prev.estimate)/prev.capacity*100 < (current.assistance?current.assistance : current.estimate)/current.capacity*100) ? prev : current).name;
         },
-        theLargeCapacity(array){
+        eventWithLargestCapacity(array){
             this.largeCapacity = array.reduce((prev, current) => 
             ((prev.capacity > current.capacity) ? prev : current)).name;
         },
         getCategories(array){
-            array.forEach((event) => {
-                if (!this.categories[event.category]) {
-                this.categories[event.category] = []}
-                this.categories[event.category].push(event);
-            })
-        },
-        getCategories2(array){
+            this.categories=[]
             array.forEach(e =>{
-                if(!this.categories2.includes(e.category)){
-                    this.categories2.push(e.category)
+                if(!this.categories.includes(e.category)){
+                    this.categories.push(e.category)
                 }
             })
         },
-        calculateRevenues(events){
-            events.forEach(event => {
+        calculateRevenues(category, array){
+            this.revenues = 0;
+            let arrayFilter = array.filter((e)=>e.category == category)
+            arrayFilter.forEach(event => {
                 const revenue = event.price * ((event.assistance ? event.assistance : event.estimate));
                 this.revenues += revenue;
             });
-            return this.revenues;
+            this.revenues;
         },
-        calculateAttendancePercentage(events){
-            let totalAssistance = events.reduce((total, event) => {
+        calculateAttendancePercentage(category, array){
+            let arrayFilter = array.filter((e)=>e.category == category)
+            let totalAssistance = 0;
+            let capacity = 0;
+            totalAssistance = arrayFilter.reduce((total, event) => {
                 return total + ((event.assistance ? event.assistance : event.estimate));
             }, 0);
-            let capacity = events.reduce((cap, event) => {
+            capacity = arrayFilter.reduce((cap, event) => {
                 return cap + (event.capacity);
             }, 0);
-            this.percentage= ((totalAssistance / capacity) * 100).toFixed(2);
+            this.attendancePercentage= ((totalAssistance / capacity) * 100).toFixed(2);
         }
     }
     ,computed: {
     }
 }).mount('#appStats')
-
-
-
-
-
-/* import {groupByCategory, insertData,} from "./functions.js";
-//Coloco en variables los containers que voy a necesitar
-let firstTable = document.getElementById("firstTable");
-let upcomingEventsTBody= document.getElementById("upcomingEventsStatsByCategories")
-let pastEventsTBody= document.getElementById("pastEventsStatsByCategories") 
-//Traigo la data y ejecuto las funciones
-async function startStats(){
-    await fetch("../json/amazing.json")
-        .then(response => response.json())
-        .then(data => {
-            // Guardar la fecha en una nueva variable
-            const currentDate = data.currentDate; 
-            // Guardar los eventos en una nueva variable
-            const events = data.events; 
-            //Filtrado de eventos por venir
-            let upcomingEvents = events.filter((event) => {
-                return event.date > currentDate;});
-            //Filtrado de eventos pasados
-            let pastEvents = data.events.filter((event) => {
-                return event.date < currentDate;});
-            //Ingreso de la data en la primer tabla
-            insertData(events,firstTable); 
-            //Ingreso de filas y columnas según categoría en la segunda tabla
-            groupByCategory(upcomingEvents, upcomingEventsTBody)
-            //Ingreso de filas y columnas según categoría en la tercer tabla
-            groupByCategory(pastEvents, pastEventsTBody)
-        })
-        //Muestro el error si no puedo cargar la data
-        .catch(error => alert("Couldn't load data. Error: ", error));
-}
-startStats() */
