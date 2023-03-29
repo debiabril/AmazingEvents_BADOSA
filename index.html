@@ -23,8 +23,6 @@
                         <li class="nav-item"><a class="nav-link btn btn-active py-1 mx-2 mt-1" aria-current="page" href="#">Home</a></li>
                         <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/upcomingEvents.html">Upcoming Events</a></li>
                         <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/pastEvents.html">Past Events</a></li>
-                        <!-- <li class="nav-item"><button @click="upcomingEvents" class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/upcomingEvents.html">Upcoming Events</button></li>
-                        <li class="nav-item"><button @click="pastEvents" class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/pastEvents.html">Past Events</button></li> -->
                         <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/contact.html">Contact</a></li>
                         <li class="nav-item"><a class="nav-link btn btn-nav py-1 mx-2 mt-1" href="./pages/stats.html">Stats</a></li>
                     </ul>
@@ -61,7 +59,7 @@
             </a>
         </div>
         <div v-show="cardsBoolean">
-            <form  class="d-flex justify-content-between flex-wrap pt-2">
+            <form class="d-flex justify-content-between flex-wrap pt-2">
                 <div id="formCategories" class="d-flex flex-wrap formCategories">
                     <div v-for="category of categories" class="d-flex flex-wrap form-check form-switch">
                         <label class="d-inline-flex my-2 mx-2">
@@ -75,10 +73,12 @@
                     <a class="visually-hidden" href="https://www.flaticon.es/iconos-gratis/buscar" title="buscar iconos">Buscar iconos creados por Freepik - Flaticon</a>
                 </div>
                 {{ultraFilter}}
-                <!-- <h1 v-if="ultraFilter" >We didn't find results in your search. Please adjust the filters.</h1> -->
             </form>
         </div>
-        <!-- <h1 v-if="!allCards.lenght ==0 || !cards.lenght == 0" class="text-center">Couldn't load data</h1> -->
+        <div class="d-flex justify-content-center align-items-center">
+            <h1 class="text-center" v-if="allCards == 0" >We didn't find results in your search. Please adjust the filters.</h1>
+        </div>
+        <h1 v-if="!allCards.lenght == 0" class="text-center">Couldn't load data</h1>
         <div id="cardsIndex" class="cards d-flex justify-content-around flex-wrap mt-4">            
             <div v-show="cardsBoolean" v-for="card of allCards" class="card mx-2 my-2">
                 <img :src="card.image" class="card-img-top" :alt="card.category">
@@ -88,48 +88,10 @@
                     <div class="d-flex justify-content-between">
                         <p class="pt-2">Price: ${{card.price}}</p>
                         <a :href="'./pages/details.html?id=' + card._id" class="btn btn-nav align-self-center go">Go to Details</a>
-                        <!-- <button @click="goToDetails(card._id)" class="btn btn-nav align-self-center go">Go to Details</button> -->
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <div v-show="cardDetailsBoolean">
-            <div class="container d-flex justify-content-center">
-                <div class="card my-3" id="cardDetails">
-                    <div  class="row g-0">
-                        <div class="col-md-6 d-flex justify-content-center align-items-center">
-                            <img :src="cardDetails.image" id="cardImg" class="img-fluid borderRadius " :alt="cardDetails.name">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card-body">
-                                <dl class="card-text">
-                                    <dt>Name</dt>
-                                    <dd>{{cardDetails.name}}</dd>
-                                    <dt>Date</dt>
-                                    <dd>{{cardDetails.date}}</dd>
-                                    <dt>Description</dt>
-                                    <dd>{{cardDetails.description}}</dd>
-                                    <dt>Category</dt>
-                                    <dd>{{cardDetails.category}}</dd>
-                                    <dt>Place</dt>
-                                    <dd>{{cardDetails.place}}</dd>
-                                    <dt>Capacity</dt>
-                                    <dd>{{cardDetails.capacity}}</dd>
-                                    <dt>{{cardDetails.assistance ? "Asistence" : "Estimate"}}</dt>
-                                    <dd>{{cardDetails.assistance || cardDetails.estimate}}</dd>
-                                    <dt>Price</dt>
-                                    <dd>{{cardDetails.price}}</dd>
-                                </dl>
-                                <div class="d-flex justify-content-end">
-                                    <a href="javascript:history.back()" class="btn btn-details align-self-center go">Go Back</a> 
-                                    <button @click="goHome()" class="btn btn-details align-self-center go">Go Back </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </main>
     <footer class="d-flex flex-wrap justify-content-between pt-2 pe-4">
         <div class="d-flex" id="divIconos">

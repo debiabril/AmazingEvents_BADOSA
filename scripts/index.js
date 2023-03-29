@@ -27,9 +27,7 @@ const app = createApp({
                     this.cards = data.events
                     this.allCards = this.cards
                     this.getCategories(data.events)
-                    this.pastCards = data.events.filter((e)=>e.date < data.currentDate)
-                    console.log(this.pastCards);
-                    
+                    this.pastCards = data.events.filter((e)=>e.date < data.currentDate)                   
                 })
                 .catch(error => alert("Couldn't load data. Error: ", error))
         },
