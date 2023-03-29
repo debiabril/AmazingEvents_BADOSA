@@ -1,5 +1,4 @@
 const { createApp } = Vue
-
 const app = createApp({
     data(){
         return {
@@ -10,7 +9,6 @@ const app = createApp({
         this.getData()
     },
     mounted(){
-
     },
     methods:{
         getData(){
@@ -24,9 +22,7 @@ const app = createApp({
                 })
                 .catch(error => alert("Couldn't load data. Error: ", error))
         },
-        
     },
     computed:{
-        
     }
 }).mount('#appDetails')

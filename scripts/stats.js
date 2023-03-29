@@ -1,5 +1,4 @@
 const { createApp } = Vue
-
 const app = createApp({
     data() {
         return {
@@ -18,7 +17,6 @@ const app = createApp({
         this.getData()
     },
     mounted(){
-
     },
     methods: {
         getData(){
@@ -26,32 +24,41 @@ const app = createApp({
         .then(response => response.json())
         .then(data => {
             this.events = data.events
-            this.eventWithHighestAttendance(this.events)
-            this.eventWithLowestAttendance(this.events)
-            this.eventWithLargestCapacity(this.events)
+            this.getEventWithHighestAttendance(this.events)
+            this.getEventWithLowestAttendance(this.events)
+            this.getEventWithLargestCapacity(this.events)
             this.upcomingEvents = this.events.filter((e)=>e.date > data.currentDate);
             this.pastEvents= this.events.filter((e)=>e.date < data.currentDate)
         })        
         .catch(error => console.log(error));
         },
-        eventWithHighestAttendance(array){
+        getEventWithHighestAttendance(array){
             let eventWithHighestAttendance = "";
             let highestAttendancePercentage = -1;
             array.forEach((event) => {
                 const percentage = ((event.assistance ? event.assistance : event.estimate) / event.capacity) * 100;
-                if (percentage > highestAttendancePercentage) {
-                highestAttendancePercentage = percentage;
-                eventWithHighestAttendance = event.name;
-                }
+                    if (percentage > highestAttendancePercentage) {
+                    highestAttendancePercentage = percentage;
+                    eventWithHighestAttendance = event.name;
+                    }   
             });
             this.highestAttendance = eventWithHighestAttendance;
         },
-        eventWithLowestAttendance(array){
-            this.lowestAttendance = array.reduce((prev, current) => ((prev.assistance?prev.assistance : prev.estimate)/prev.capacity*100 < (current.assistance?current.assistance : current.estimate)/current.capacity*100) ? prev : current).name;
+        getEventWithLowestAttendance(array){
+            let eventsWithLowestAttendance = "";
+            let lowestAttendancePercentage = 101;
+            array.forEach((event) => {
+                const percentage = ((event.assistance ? event.assistance : event.estimate)/ event.capacity) * 100;
+                if (percentage < lowestAttendancePercentage) {
+                    lowestAttendancePercentage = percentage;
+                    eventsWithLowestAttendance = event.name;
+                } 
+            });
+            this.lowestAttendance= eventsWithLowestAttendance;
         },
-        eventWithLargestCapacity(array){
-            this.largeCapacity = array.reduce((prev, current) => 
-            ((prev.capacity > current.capacity) ? prev : current)).name;
+        getEventWithLargestCapacity(array){
+            this.largeCapacity = array.reduce((prevEvent, actualEvent) => 
+            ((prevEvent.capacity > actualEvent.capacity) ? prevEvent : actualEvent)).name;
         },
         getCategories(array){
             this.categories=[]

@@ -1,5 +1,4 @@
 const { createApp } = Vue
-
 const app = createApp({
     data(){
         return {
@@ -15,10 +14,8 @@ const app = createApp({
     },
     created(){
         this.getData()
-        
     },
     mounted(){
-
     },
     methods:{
         getData(){
@@ -57,6 +54,5 @@ const app = createApp({
                 this.pastCards = firstFilter.filter(card => this.categoriesSelected.includes(card.category))
             }
         },
-        
     }
 }).mount('#appPast')
